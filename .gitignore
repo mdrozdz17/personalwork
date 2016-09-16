@@ -30,3 +30,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/PBD/Basics/VariablesandNames/nbproject/private/
+/PBD/Basics/UsingVariables/nbproject/private/
+/PBD/Basics/WhatIf/nbproject/private/
+/PBD/Basics/HowOldAreYou/nbproject/private/
