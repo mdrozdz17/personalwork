@@ -39,11 +39,12 @@ public class LuckySevens {
 
             // Rolls the dice randomly between 1 and 6
             Random rGen = new Random();
-            die1 = rGen.nextInt(6) + 1;
+                    die1 = rGen.nextInt(6) + 1;
             die2 = rGen.nextInt(6) + 1;
 
             // Winnings or Losings
-            if (die1 + die2 == 7) {
+            if (die1 + die2 == 7) 
+            {
                 money += 4; // win $4
             } else {
                 money -= 1; // lose $1

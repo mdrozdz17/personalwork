@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.interestcalculator;
+package com.sg.tentimes;
 
 /**
  *
  * @author apprentice
  */
-public class InterestCalculator {
+public class TenTimes {
+    public static void main(String[] args) {
+        
+        for (int i = 1; i <= 10; i++){
+        System.out.println("Mr.Mitchell is cool");
+        }
+    }
     
 }
