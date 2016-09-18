@@ -25,7 +25,6 @@ public class RockPaperScissorsStep2 {
         int userChoice;
         int cpuRandom;
         int numberOfRounds = 0;
-        int maxRounds = 10;
         String strRounds = "!";
        
         System.out.println("How many rounds would you like to play? Please input a number between 1 - 10:");
@@ -33,7 +32,12 @@ public class RockPaperScissorsStep2 {
         strRounds = sc.nextLine();
         numberOfRounds = Integer.parseInt(strRounds);
        
+        // if-then-else statment to only let program execute if numberOfRounds is less than 10
+        // or is greater 0.
         if (numberOfRounds < 10 && numberOfRounds > 0) {
+            
+        // Use the for loop to play number of rounds the user wants.
+            for (int r = 0; r < numberOfRounds; r++) {    
             // Computer asks user for his choice
             System.out.println("Please enter: rock = " + rock + " or paper = " + paper + " or scissors = " + scissors);
             userChoice = sc.nextInt();
@@ -43,6 +47,8 @@ public class RockPaperScissorsStep2 {
             cpuRandom = rGen.nextInt(3) + 1;
             System.out.println("The computer choice is " + cpuRandom);
 
+            // Use Switch Statement for Computer's choice so that 1 = Rock, 2 = Paper
+            // and 3 = Scissors
             String choice = "!";
             switch (cpuRandom) {
                 case 1:
@@ -55,8 +61,10 @@ public class RockPaperScissorsStep2 {
                     choice = "Scissors";
                     break;
             }
+            // Print out the Computer choice using the Switch Statement
             System.out.println("The computer choose " + choice);
-
+            
+           
             // Result is tie, user win, or cpu win
             if (cpuRandom == userChoice) {
                 System.out.println("The Result is a Tie!");
@@ -88,6 +96,10 @@ public class RockPaperScissorsStep2 {
                     System.out.println("Scissors cuts Paper - Computer Wins!");
                 }
             }
+            }
+          // Part of if-then-else statment, commented on line 35 to show that if
+          // numberOfRounds does not equal "if" statment to terminate and print out
+          // the message below.
         } else {
             System.out.println("This is not a valid number - Program now terminates");
         }

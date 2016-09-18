@@ -33,7 +33,9 @@ public class RockPaperScissorsStep1 {
         Random rGen = new Random();
         cpuRandom = rGen.nextInt(3) + 1;
         System.out.println("The computer choice is " + cpuRandom);
-
+        
+        // Use Switch Statement for Computer's choice so that 1 = Rock, 2 = Paper
+        // and 3 = Scissors
         String choice = "!";
         switch (cpuRandom) {
             case 1:
@@ -46,6 +48,7 @@ public class RockPaperScissorsStep1 {
                 choice = "Scissors";
                 break;
         }
+        // Print out the Computer choice using the Switch Statement
         System.out.println("The computer choose " + choice);
 
         // Result is tie, user win, or cpu win
