@@ -17,7 +17,7 @@ public class RefactorRps {
     public static void main(String[] args) {
         do {
             // method for asking the user how many rounds to play and playing game
-            ask();
+            askUserForChoice();
         } while (again == 1);
         // method to show Overall Winner
         overallWinner();
@@ -28,7 +28,7 @@ public class RefactorRps {
     public static Random rGen = new Random();
     
 
-    public static void ask() {
+    public static void askUserForChoice() {
         System.out.println("How many rounds would you like to play? Please input a number between 1 - 10:");
         numberOfRounds = sc.nextInt();
 
@@ -121,7 +121,7 @@ public class RefactorRps {
             System.out.println("The overall Winner is the Computer!");
         } else if (userWins > cpuWins) {
             System.out.println("You are the Winner!");
-        } else {
+         if (userWins == cpuWins) {
             System.out.println("The result is a Tie!");
         }
         if (again != 2) {
@@ -130,4 +130,5 @@ public class RefactorRps {
         }
 }
     
+}
 }
