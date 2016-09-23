@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.factorizer;
+package com.sg.funwithfileio;
 
 /**
  *
@@ -11,9 +11,7 @@ package com.sg.factorizer;
  */
 public class App {
     public static void main(String[] args) {
-    Factorizer myApp = new Factorizer(); 
+      FunWithFileIOApp myApp = new FunWithFileIOApp(); 
     myApp.run();
+    }
 }
-}
-
-

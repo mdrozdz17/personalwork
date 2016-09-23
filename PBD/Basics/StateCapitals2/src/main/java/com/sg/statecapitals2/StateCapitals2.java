@@ -6,10 +6,8 @@
 package com.sg.statecapitals2;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  *
@@ -21,7 +19,7 @@ public class StateCapitals2 {
 
     public void run() {
          Scanner sc = new Scanner(System.in);
-        
+        // Evaluating with String and Capital class with Hashmap called "stateCapitals"
         HashMap< String, Capital> stateCapitals = new HashMap<>();
 
         stateCapitals.put("Alabama",new Capital("Montgomery",201332, 156f));
@@ -29,10 +27,13 @@ public class StateCapitals2 {
         stateCapitals.put("Arizona",new Capital("Phoenix",1445000, 517f));
         stateCapitals.put("Arkansas",new Capital("Little Rock",197357, 116f));
         
+        // Method called printOut
         printOut(stateCapitals);
         System.out.println("");
+        // Method called userInput
         userInput(stateCapitals);
     }
+        // Method to printout States, Capitals, Population and Square Miles
         public void printOut(HashMap<String, Capital> stateCapitals) {
             System.out.println("STATE/CAPITAL PAIRS:"); 
             System.out.println("====================");
@@ -45,35 +46,27 @@ public class StateCapitals2 {
 
         }
     }
+        // Method to allow User to Input popluation and evaluate results to Hashmap
         public void userInput(HashMap<String, Capital> stateCapitals) {
-         Set<String> keyset = stateCapitals.keySet();
         System.out.println("Please enter the lower limit for the city population");
         int cityPop = sc.nextInt();
-        int population;
-      // Set<String> keys = stateCapitals.keySet();
-       // for(String key: keys) {
+        int population = 0;
             System.out.println("");
-         
-        
-           System.out.println("LISTING CAPITALS WITH POPULATIONS GREATER THAN " + cityPop);
-
+          System.out.println("LISTING CAPITALS WITH POPULATIONS GREATER THAN " + cityPop);
         for (Entry<String, Capital> stateResults : stateCapitals.entrySet()) {
-        //for (String s : keyset)
-            
-        population = (stateCapitals.get(s)).getPop();
-        if (cityPop < stateResults.getValue().getPop()); {
-           System.out.println(cityPop < stateResults.getValue().getPop());
-        System.out.println(cityPop + " population is greater than " + stateResults.getKey() + " - " + stateResults.getValue().getPop());
-       // System.out.println(stateResults.getKey() + " - " + stateResults.getValue().getName() + " | Pop " + stateResults.getValue().getPop()+ " | Area " + stateResults.getValue().getSquareMile());
+          // define variable population to .getPop value from Hashmap
+        population = (stateResults.getValue().getPop());
+        // Use if statement that looks at .getPop from Hashmap and evaluates
+        // to userInput (cityPop)
+        if (population >= cityPop) {
+            System.out.println(stateResults.getKey() + " - " + stateResults.getValue().getName() + " | Pop " + stateResults.getValue().getPop()+ " | Area " + stateResults.getValue().getSquareMile());
         }
-        
-       // enchanced for loop 
+        }
        // have an if statement that looks at .getPop
-       //for (Entry<String, Capital> stateResults : stateCapitals.entrySet()) {
-       // System.out.println("Value of " + key + "is " + stateCapitals.get(key));
-        }
+        
         }
 }
+        
 
 
 

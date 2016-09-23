@@ -3,24 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.simplecalculator;
+package com.sg.simplecalculator2;
 
 import java.util.Scanner;
-import java.io.IOException;
 
 /**
  *
  * @author apprentice
  */
-class SimpleCalculator {
+public class App {
 
-    // Making reference to ConsoleIO
-    // Calling my ConsoleIO calculator in this instance
-    ConsoleIO calculator = new ConsoleIO();
-
-    public void run() {
-        int num1;
-        int num2;
+    public static void main(String[] args) {
+ // Calling ConsoleIO  with "io" as name of the instance. 
+ ConsoleIO io = new ConsoleIO();
+ // Calling SimpleCalculator2 from App.java and call the instance "calc"
+ // This will be used to call the methods defined their.
+ SimpleCalculator2 calc = new SimpleCalculator2();
+ 
+        float num1 = 0;
+        float num2 = 0;
         String oper1 = "+";
         String oper2 = "-";
         String oper3 = "*";
@@ -33,7 +34,7 @@ class SimpleCalculator {
         do { // do while loop to run through calculator until user is read to quit
             System.out.println("Please enter operation");
             System.out.println("You can choose + or - or / or  * or type " + 0 + " for quit ");
-            operation = sc.next();
+            operation = sc.next(); // operation = UserInput
             int quit = 0;
             // if UserInput = 0 quit the calculator
             if (operation.equals("0")) {
@@ -45,27 +46,34 @@ class SimpleCalculator {
                 System.out.println("That is not a valid option. Please enter a valid option");
 
             } else {
-
-                num1 = calculator.getInteger("Please enter your first operand");
-                num2 = calculator.getInteger("Please enter your second operand");
+                // Using ConsoleIO.Java to call method getFloat
+                num1 = io.getFloat("Please enter your first operand");
+                num2 = io.getFloat("Please enter your second operand");
             }
             switch (operation) {
                 case "+":
-                    System.out.println("your answer is " + doAddition());
+                    // Calling to Simplecalculator2.java with instance "calc" defined
+                    // above to doAddition method in App.Java
+                    System.out.println("your answer is " + calc.doAddition(num1,num2));
                     break;
                 case "-":
-                    System.out.println("your answer is " + (num1 - num2));
+                    // Calling to Simplecalculator2.java with instance "calc" defined
+                    // above to doSubtraction method in App.Java
+                    System.out.println("your answer is " + calc.doSubtration(num1,num2));
                     break;
                 case "/":
-                    System.out.println("your answer is " + (num1 / num2));
+                    // Calling to Simplecalculator2.java with instance "calc" defined
+                    // above to doDivision method in App.Java
+                    System.out.println("your answer is " + calc.doDivision(num1,num2));
                     break;
                 case "*":
-                    System.out.println("your answer is " + (num1 * num2));
+                    // Calling to Simplecalculator2.java with instance "calc" defined
+                    // above to doMultiplication method in App.Java
+                    System.out.println("your answer is " + calc.doMultiplication(num1, num2));
                     break;
                 default:
                     System.out.println("Wrong selection");
                     break;
-
             }
 
         } while (!operation.equals(0));
