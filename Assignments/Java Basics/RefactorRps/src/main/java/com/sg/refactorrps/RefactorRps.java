@@ -13,15 +13,16 @@ import java.util.Scanner;
  * @author apprentice
  */
 public class RefactorRps {
+    
+    public void run() {
 
-    public static void main(String[] args) {
         do {
             // method for asking the user how many rounds to play and playing game
             askUserForChoice();
         } while (again == 1);
         // method to show Overall Winner
         overallWinner();
-    }
+    } 
     public static int numberOfRounds, rock = 1, paper = 2, scissors = 3, userChoice;
     public static int cpuRandom, again, yes = 1, no = 2, tie, cpuWins, userWins;
     public static Scanner sc = new Scanner(System.in);
@@ -131,4 +132,6 @@ public class RefactorRps {
 }
     
 }
-}
+
+    }
+

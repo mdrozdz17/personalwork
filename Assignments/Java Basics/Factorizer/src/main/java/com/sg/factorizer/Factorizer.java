@@ -1,3 +1,5 @@
+package com.sg.factorizer;
+
 
 import java.util.Scanner;
 
@@ -12,8 +14,7 @@ import java.util.Scanner;
  */
 public class Factorizer {
 
-    @SuppressWarnings("empty-statement")
-    public static void main(String[] args) {
+        public void run() {
         Scanner sc = new Scanner(System.in);
 
        
@@ -58,4 +59,7 @@ public class Factorizer {
         }
     }
 
-}
+    
+    }
+
+
