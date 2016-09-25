@@ -16,7 +16,7 @@ public class SimpleCalculator2 {
         return sum;
     }
 
-    public float doSubtration(float num1,float num2) {
+    public float doSubtration(float num1, float num2) {
         float sum = num1 - num2;
         return sum;
     }
@@ -26,8 +26,15 @@ public class SimpleCalculator2 {
         return sum;
     }
 
-    public float doDivision(float num1, float num2) {
-        float sum = num1 / num2;
+    public float doDivision(int num1, int num2) {
+        int sum = 0;
+        try {
+            sum = num1 / num2;
+
+        } catch (Exception e) {
+            System.out.println("Division by zero. Please enter a valid number");
+        }
+
         return sum;
     }
 }
