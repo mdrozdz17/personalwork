@@ -20,12 +20,12 @@ public class App {
  // This will be used to call the methods defined their.
  SimpleCalculator2 calc = new SimpleCalculator2();
  
-        float num1 = 0;
-        float num2 = 0;
+        int num1 = 0;
+        int num2 = 0;
         String oper1 = "+";
         String oper2 = "-";
         String oper3 = "*";
-        String oper4 = "-";
+        String oper4 = "/";
 
         String operation;
         String q = "quit";
@@ -47,8 +47,8 @@ public class App {
 
             } else {
                 // Using ConsoleIO.Java to call method getFloat
-                num1 = io.getFloat("Please enter your first operand");
-                num2 = io.getFloat("Please enter your second operand");
+                num1 = io.getInteger("Please enter your first operand");
+                num2 = io.getInteger("Please enter your second operand");
             }
             switch (operation) {
                 case "+":

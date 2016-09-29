@@ -10,24 +10,33 @@ package com.sg.simplecalculator2;
  * @author apprentice
  */
 public class SimpleCalculator2 {
+    
+    int sum;
 
-    public float doAddition(float num1, float num2) {
-        float sum = num1 + num2;
+    public float doAddition(int num1, int num2) {
+        sum = num1 + num2;
         return sum;
     }
 
-    public float doSubtration(float num1,float num2) {
-        float sum = num1 - num2;
+    public float doSubtration(int num1,int num2) {
+        sum = num1 - num2;
         return sum;
     }
 
-    public float doMultiplication(float num1, float num2) {
-        float sum = num1 * num2;
+    public float doMultiplication(int num1, int num2) {
+        sum = num1 * num2;
         return sum;
     }
 
-    public float doDivision(float num1, float num2) {
-        float sum = num1 / num2;
+    public float doDivision(int num1, int num2) {
+      
+        try {
+        sum = num1/num2;
+        } catch (Exception ex) { 
+            System.out.println("Not divisible by 0. Please try again");
+       
+    }
         return sum;
     }
 }
+
