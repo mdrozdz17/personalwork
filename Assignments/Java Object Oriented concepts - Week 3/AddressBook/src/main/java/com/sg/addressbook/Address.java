@@ -16,20 +16,15 @@ public class Address {
     private String street;
     private String city;
     private String state;
-    private int zip;
-    private String addressId;
+    private Integer zip;
+    private Integer addressId;
     
 
     public Address() {
 
     }
 
-// This is a read only field. This is the only value we pass into the 
-// constructor. All other fields are read/write
-    public Address(String addressId) {
-        this.addressId = addressId;
-    }
-
+ 
     public String getFirstName() {
         return firstName;
     }
@@ -70,24 +65,20 @@ public class Address {
         this.state = state;
     }
 
-    public int getZip() {
+    public Integer getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(Integer zip) {
         this.zip = zip;
     }
 
-    public String getAddressId() {
+    public Integer getAddressId() {
         return addressId;
     }
 
-    public void setAddressId(String addressId) {
+    public void setAddressId(Integer addressId) {
         this.addressId = addressId;
-    }
-
-    void writeAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
