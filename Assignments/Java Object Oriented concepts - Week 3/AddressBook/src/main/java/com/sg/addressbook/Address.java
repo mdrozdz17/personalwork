@@ -16,7 +16,7 @@ public class Address {
     private String street;
     private String city;
     private String state;
-    private Integer zip;
+    private String zip;
     private Integer addressId;
     
 
@@ -65,11 +65,11 @@ public class Address {
         this.state = state;
     }
 
-    public Integer getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(Integer zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 

@@ -34,35 +34,8 @@ public class DVDLibraryDAO {
     private ConsoleIO con = new ConsoleIO();
 
     private HashMap<Integer, DVD> dvdMap = new HashMap();
-    
-    
-    
-      private void createMyDvdCollection() throws FileNotFoundException {
-        // We have to either try...or catch or throws
-        // IOException is  subject to Catch or Specify
-        // The IOException is tied to the FileWrite object
-     
-            // PrintWriter may buffer some of our output - so it
-            // doesen't immediately write con to the file
-            // PrintWriter can store some of it's inputs into memory
-            // We will take care of this with flush()
-             PrintWriter outPrinter = new PrintWriter(
-                    new FileOutputStream(new File(DVD_FILE), true));
-            // flush forces everything to be written to the file
-            // This clears the PrintWriter's buffer
-            outPrinter.flush();
-            // Close the underlying stream that attaches the PrintWriter to FileWriter
-            // the PrintWriter to FileWriter
-            // This will free up the file for use to others
-            // This allows for proper allocation and deallocation of memory
-            // (Proper memory management)
-            outPrinter.close();
-        }
- 
 
-
-    public Map<Integer, DVD> decode() throws FileNotFoundException {
-       Map<Integer, DVD> tempDVDMap = new HashMap();
+    public void decode() throws FileNotFoundException {
         Scanner sc = new Scanner(new BufferedReader(new FileReader(DVD_FILE)));
         String[] currentTokens;
         while (sc.hasNextLine()) {
@@ -71,7 +44,7 @@ public class DVDLibraryDAO {
             currentTokens = currentLine.split(DELIMITER);
 
             DVD currentDVD = new DVD();
-            
+
             currentDVD.setDvdId(Integer.parseInt((currentTokens[0])));
             currentDVD.setTitle(currentTokens[1]);
             currentDVD.setReleaseDate(Integer.parseInt((currentTokens[2])));
@@ -80,74 +53,69 @@ public class DVDLibraryDAO {
             currentDVD.setStudio(currentTokens[5]);
             currentDVD.setUserRating(currentTokens[6]);
 
-            tempDVDMap.put(Integer.parseInt((currentTokens[0])), currentDVD);
+            dvdMap.put(Integer.parseInt((currentTokens[0])), currentDVD);
         }
-        return tempDVDMap;
-    }
 
+    }
 
     public void encode() throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(DVD_FILE));
-          Set<Integer> keySet = dvdMap.keySet();
-            for (Integer i : keySet) {
+        Set<Integer> keySet = dvdMap.keySet();
+        for (Integer i : keySet) {
 
-                out.print((dvdMap.get(i)).getDvdId());
-                out.print(DELIMITER);
+            out.print((dvdMap.get(i)).getDvdId());
+            out.print(DELIMITER);
 
-                out.print((dvdMap.get(i)).getTitle());
-                out.print(DELIMITER);
+            out.print((dvdMap.get(i)).getTitle());
+            out.print(DELIMITER);
 
-                out.print((dvdMap.get(i)).getReleaseDate());
-                out.print(DELIMITER);
+            out.print((dvdMap.get(i)).getReleaseDate());
+            out.print(DELIMITER);
 
-                out.print((dvdMap.get(i)).getMpaaRating());
-                out.print(DELIMITER);
+            out.print((dvdMap.get(i)).getMpaaRating());
+            out.print(DELIMITER);
 
-                out.print((dvdMap.get(i)).getDirectorsName());
-                out.print(DELIMITER);
+            out.print((dvdMap.get(i)).getDirectorsName());
+            out.print(DELIMITER);
 
-                out.print((dvdMap.get(i)).getStudio());
-                out.print(DELIMITER);
+            out.print((dvdMap.get(i)).getStudio());
+            out.print(DELIMITER);
 
-                out.print((dvdMap.get(i)).getUserRating());
-                out.println("");
+            out.print((dvdMap.get(i)).getUserRating());
+            out.println("");
 
-            }
-            out.flush();
-            out.close();
         }
-    
+        out.flush();
+        out.close();
+    }
 
-
-    
     public Integer[] getDvdIdList() {
         Set<Integer> keySet = dvdMap.keySet();
         Integer[] keyArray = new Integer[keySet.size()];
         keyArray = keySet.toArray(keyArray);
         return keyArray;
     }
-    
- 
-   public DVD getDvd(Integer dvdId) {
+
+    public DVD getDvd(Integer dvdId) {
         return dvdMap.get(dvdId);
     }
 
     public DVD removeDvd(Integer dvdId) {
         return dvdMap.remove(dvdId);
-        
+
     }
 
     public DVD addDvd(Integer dvdId, DVD dvd) {
         return dvdMap.put(dvdId, dvd);
     }
 
-    public void findByTitle(String title) {
+    public DVD findByTitle(String title) {
         Set<Integer> keySet = dvdMap.keySet();
 
         for (Integer i : keySet) {
 
             if ((dvdMap.get(i)).getTitle().equals(title)) {
-           // if ((dvdMap.get(i)).getTitle().matches(",*[a-z].*")); {
+                // if ((dvdMap.get(i)).getTitle().matches(",*[a-z].*")); {
 
                 con.print("ID: " + i);
                 con.print("Title: " + (dvdMap.get(i)).getTitle());
@@ -156,40 +124,16 @@ public class DVDLibraryDAO {
                 con.print("Studio: " + (dvdMap.get(i)).getStudio());
                 con.print("Directors Name: " + (dvdMap.get(i)).getDirectorsName());
                 con.print("User Rating: " + (dvdMap.get(i)).getUserRating());
-                
 
             }
 
         }
+        return null;
 
     }
 
-    public DVD editTitle(int dvdId, DVD newDvd) {
-        return dvdMap.put(dvdId, newDvd);
+    public void update(DVD dvd) {
+     
     }
 
-    public DVD editReleaseDate(int dvdId, DVD newDvd) {
-                return dvdMap.put(dvdId, newDvd);
-
-    }
-
-    public DVD editDirectorsName(int dvdId, DVD newDvd) {
-                return dvdMap.put(dvdId, newDvd);
-
-    }
-
-    public DVD editStudioName(int dvdId, DVD newDvd) {
-                return dvdMap.put(dvdId, newDvd);
-
-    }
-
-    public DVD editUserRating(int dvdId, DVD newDvd) {
-                return dvdMap.put(dvdId, newDvd);
-
-    }
-
-    public DVD editMpaaRating(int dvdId, DVD newDvd) {
-                        return dvdMap.put(dvdId, newDvd);
-
-    }
 }

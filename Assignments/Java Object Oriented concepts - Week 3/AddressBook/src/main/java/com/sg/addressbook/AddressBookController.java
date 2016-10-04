@@ -17,16 +17,17 @@ import java.util.List;
  */
 public class AddressBookController {
 
-    private HashMap<String, Address> addressMap = new HashMap<String, Address>();
+    private HashMap<Integer, Address> addressMap = new HashMap<Integer, Address>();
 
-    private AddressbookDAO myAddresses = new AddressbookDAO();
+    private AddressBookDAO myAddresses = new AddressBookDAO();
     private ConsoleIO con = new ConsoleIO();
+    
 
-    void run() {
+    public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
         try {
-            //  myAddresses.decode();
+           myAddresses.decode();
             while (keepGoing) {
                 printMenu();
                 menuSelection = con.readInt("Please select from the above choices.", 1, 7);
@@ -95,14 +96,17 @@ public class AddressBookController {
         String Street = con.readString("Please enter Street Name");
         String City = con.readString("Please enter City Name");
         String State = con.readString("Please enter State Name");
-        Integer Zip = con.readInt("Please enter Zip Name");
+        String Zip = con.readString("Please enter Zip Name");
         Address currentAddress = new Address();
+        currentAddress.setAddressId(addressId);
         currentAddress.setFirstName(firstName);
         currentAddress.setLastName(lastName);
         currentAddress.setStreet(Street);
         currentAddress.setCity(City);
         currentAddress.setState(State);
         currentAddress.setZip(Zip);
+        
+       
 
         myAddresses.addAddress(addressId, currentAddress);
 
@@ -112,7 +116,7 @@ public class AddressBookController {
     private void removeAddress() {
         Integer addressId = con.readInt("Please enter the Address ID you would like removed");
         myAddresses.removeAddress(addressId);
-        con.readString("Student successfully removed.  Please hit enter to continue.");
+        con.readString("Address successfully removed.  Please hit enter to continue.");
 
     }
 
@@ -122,9 +126,9 @@ public class AddressBookController {
     }
 
     private void addressCount() {
-        Integer[] addressIds = myAddresses.getAddressIDCount();
-        int number = addressMap.size();
+      int number = myAddresses.getAddressCount();
         con.print("The number of addresses are: " + number);
+        
         
     }
     
@@ -142,22 +146,29 @@ public class AddressBookController {
 
     }
 
-    private void editAddress() {
+    private void editAddress() throws IOException {
         int addressId = con.readInt("Please enter the ID at the address you would like to edit");
-        String Street = con.readString("Please enter the new Street");
-        String City = con.readString("Please enter the new City");
-        String State = con.readString("Please enter the new State");
-        int zip = con.readInt("Please enter the Zip Code");
+        String firstName = con.readString("Please enter First Name");
+        String lastName = con.readString("Please enter Last Name");
+        String Street = con.readString("Please enter Street Name");
+        String City = con.readString("Please enter City Name");
+        String State = con.readString("Please enter State Name");
+        String Zip = con.readString("Please enter Zip Name");
+        Address currentAddress = new Address();
+        currentAddress.setAddressId(addressId);
+        currentAddress.setFirstName(firstName);
+        currentAddress.setLastName(lastName);
+        currentAddress.setStreet(Street);
+        currentAddress.setCity(City);
+        currentAddress.setState(State);
+        currentAddress.setZip(Zip);
         
-        Address newAddress = new Address();
-        newAddress.setStreet(Street);
-        newAddress.setCity(City);
-        newAddress.setState(State);
-        newAddress.setZip(zip);
+       
 
-        myAddresses.addAddress(addressId, newAddress);
+        myAddresses.editAddress(addressId, currentAddress);
 
-        con.readString("Address successfully Updated.  Please hit enter to continue.");
+        con.readString("The address with id " + addressId + " has been changed. Please hit enter to continue.");
+
 
         
         

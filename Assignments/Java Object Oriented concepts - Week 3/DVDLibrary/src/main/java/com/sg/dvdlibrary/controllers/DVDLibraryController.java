@@ -29,7 +29,7 @@ public class DVDLibraryController {
         boolean keepGoing = true;
         int menuSelection = 0;
         try {
-            //  myDvd.readAddress();
+            myDvd.decode();
             while (keepGoing) {
                 printMenu();
                 menuSelection = con.readInt("Please select from the above choices.", 1, 7);
@@ -57,7 +57,7 @@ public class DVDLibraryController {
                         break;
                     case 6:
                         con.print("Edit DVD Information");
-                        editMenu();
+                        editDvd();
                         break;
                     case 7:
                         con.print("Exit DVD Library");
@@ -146,6 +146,7 @@ public class DVDLibraryController {
             String studio = con.readString("Please enter the Studio where the movie was recorded.");
             String userRating = con.readString("Please enter some comments about the DVD.");
             DVD currentDvd = new DVD();
+            currentDvd.setDvdId(dvdId);
             currentDvd.setTitle(title);
             currentDvd.setReleaseDate(releaseDate);
             currentDvd.setMpaaRating(mpaaRating);
@@ -165,42 +166,45 @@ public class DVDLibraryController {
         }
     }
 
-    private void editMenu() {
+    private void editDvd() {
         int menuSelection = 0;
         String title = con.readString("Please enter the Title of the DVD you would like to edit");
 
         printEditMenu();
         menuSelection = con.readInt("Please select from the above choices.", 1, 6);
 
+        DVD editDvd = myDvd.findByTitle(title);
         switch (menuSelection) {
             case 1:
-                con.print("Edit title of DVD");
-                editTitle();
+                String newTitle = con.readString("Enter new Title");
+                editDvd.setTitle(newTitle);
                 break;
             case 2:
-                con.print("Edit Release Date of DVD");
-                editReleaseDate();
+                Integer newReleaseDate = con.readInt("Enter new Release Date");
+                editDvd.setReleaseDate(newReleaseDate);
                 break;
             case 3:
-                con.print("Edit MPAA Rating of DVD");
-                editMpaaRating();
+                String mpaaRating = con.readString("Enter new MPAA Rating");
+                editDvd.setMpaaRating(mpaaRating);
                 break;
             case 4:
-                con.print("Edit Director's name of DVD");
-                editDirectorsName();
+                String directorsName = con.readString("Enter new Directors Name");
+                editDvd.setDirectorsName(directorsName);
                 break;
             case 5:
-                con.print("Edit Studio name of DVD");
-                editStudioName();
+                String studio = con.readString("Enter new Studio");
+                editDvd.setStudio(studio);
                 break;
             case 6:
-                con.print("Edit User Rating of DVD");
-                editUserRating();
+                String userRating = con.readString("Enter User Rating");
+                editDvd.setUserRating(userRating);
                 break;
             default:
                 con.print("Unknown Command");
 
         }
+
+        con.print("Information Successfully Updated");
 
     }
 
@@ -215,94 +219,4 @@ public class DVDLibraryController {
 
     }
 
-    private void editTitle() {
-        int dvdId = 0;
-
-        String title = (dvdMap.get(dvdId)).getTitle();
-
-        Set<Integer> keySet = dvdMap.keySet();
-
-        for (Integer i : keySet) {
-
-            if (i == dvdId) {
-
-                int releaseDate = con.readInt("Please enter the new Release Date of the DVD.");
-                String mpaaRating = con.readString("Please enter the new MPAA Rating of the DVD.");
-                String directorsName = con.readString("Please enter the new Directors Name of the DVD.");
-                String studio = con.readString("Please enter the new Studio of where the movie was recorded.");
-                String userRating = con.readString("Please enter new comments about the DVD.");
-                DVD newDvd = new DVD();
-                newDvd.setTitle(title);
-                newDvd.setReleaseDate(releaseDate);
-                newDvd.setMpaaRating(mpaaRating);
-                newDvd.setStudio(studio);
-                newDvd.setUserRating(userRating);
-
-                myDvd.editTitle(dvdId, newDvd);
-
-                con.readString("DVD Title has successfully been updated");
-
-            }
-        }
-    }
-
-    private void editReleaseDate() {
-        int dvdId = 0;
-        int releaseDate = con.readInt("Please enter the new Release Date of the DVD.");
-        DVD newDvd = new DVD();
-        newDvd.setReleaseDate(releaseDate);
-
-        myDvd.editReleaseDate(dvdId, newDvd);
-
-        con.readString("DVD Release Date has successfully been updated");
-
-    }
-
-    private void editMpaaRating() {
-        int dvdId = 0;
-        String mpaaRating = con.readString("Please enter the new MPAA Rating of the DVD.");
-        DVD newDvd = new DVD();
-        newDvd.setMpaaRating(mpaaRating);
-
-        myDvd.addDvd(dvdId, newDvd);
-
-        con.readString("DVD MPAA Rating has successfully been updated");
-
-    }
-
-    private void editDirectorsName() {
-        int dvdId = 0;
-        String directorsName = con.readString("Please enter the new Directors Name of the DVD.");
-        DVD newDvd = new DVD();
-        newDvd.setDirectorsName(directorsName);
-
-        myDvd.editDirectorsName(dvdId, newDvd);
-
-        con.readString("DVD Title has successfully been updated");
-
-    }
-
-    private void editStudioName() {
-        int dvdId = 0;
-        String studio = con.readString("Please enter the new Studio of where the movie was recorded.");
-        DVD newDvd = new DVD();
-        newDvd.setStudio(studio);
-
-        myDvd.editStudioName(dvdId, newDvd);
-
-        con.readString("DVD Studio has successfully been updated");
-
-    }
-
-    private void editUserRating() {
-        int dvdId = 0;
-        String userRating = con.readString("Please enter new comments about the DVD.");
-        DVD newDvd = new DVD();
-        newDvd.setUserRating(userRating);
-
-        myDvd.editUserRating(dvdId, newDvd);
-
-        con.readString("DVD comments have been updated");
-
-    }
 }

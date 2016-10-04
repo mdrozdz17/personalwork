@@ -1,0 +1,7 @@
+reeses::0.85::5
+snickers::0.75::3
+m&m's::0.95::12
+twix::0.80::4
+kitkat::0.70::2
+chips::1.00:6
+honey bun::1.30::7
