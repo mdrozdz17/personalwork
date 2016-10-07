@@ -134,7 +134,13 @@ public class DVDLibraryController {
         // if (title.contains(",*[a-z].*"));
 //        con.print(myDvd.getDvd();
     }
-
+    
+    private void dvdCount() {
+      int number = myDvd.getDvdCount();
+        con.print("The number of DVD's are: " + number);
+        
+    }
+    
     private void addDVD() {
         boolean keepGoing = true;
         while (keepGoing) {
@@ -172,35 +178,40 @@ public class DVDLibraryController {
 
         printEditMenu();
         menuSelection = con.readInt("Please select from the above choices.", 1, 6);
+    
 
         DVD editDvd = myDvd.findByTitle(title);
+        
         switch (menuSelection) {
             case 1:
-                String newTitle = con.readString("Enter new Title");
-                editDvd.setTitle(newTitle);
+           String newTitle = con.readString("Enter new Title");
+               editDvd.setTitle(newTitle);
                 break;
             case 2:
-                Integer newReleaseDate = con.readInt("Enter new Release Date");
+            Integer newReleaseDate= con.readInt("Enter new Release Date");
                 editDvd.setReleaseDate(newReleaseDate);
                 break;
             case 3:
-                String mpaaRating = con.readString("Enter new MPAA Rating");
-                editDvd.setMpaaRating(mpaaRating);
+            String newMpaaRating = con.readString("Enter new MPAA Rating");
+               editDvd.setMpaaRating(newMpaaRating);
                 break;
             case 4:
-                String directorsName = con.readString("Enter new Directors Name");
-                editDvd.setDirectorsName(directorsName);
+            String newDirectorsName = con.readString("Enter new Directors Name");
+                editDvd.setDirectorsName(newDirectorsName);
                 break;
             case 5:
-                String studio = con.readString("Enter new Studio");
-                editDvd.setStudio(studio);
+            String newStudio = con.readString("Enter new Studio");
+                editDvd.setStudio(newStudio);
                 break;
             case 6:
-                String userRating = con.readString("Enter User Rating");
-                editDvd.setUserRating(userRating);
+            String newUserRating = con.readString("Enter User Rating");
+               editDvd.setUserRating(newUserRating);
                 break;
             default:
                 con.print("Unknown Command");
+              
+
+        myDvd.update(editDvd.getDvdId(),editDvd);
 
         }
 

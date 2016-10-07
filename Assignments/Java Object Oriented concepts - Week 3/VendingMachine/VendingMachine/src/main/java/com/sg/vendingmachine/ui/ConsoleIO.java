@@ -19,8 +19,8 @@ public class ConsoleIO {
         System.out.println(msg);
     }
     
-    public void print1(){
-            System.out.println();
+    public void print1(Object msg){
+            System.out.println(msg);
     
 }
     

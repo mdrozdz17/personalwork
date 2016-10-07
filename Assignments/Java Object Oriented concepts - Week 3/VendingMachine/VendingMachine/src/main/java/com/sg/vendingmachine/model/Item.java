@@ -10,16 +10,18 @@ package com.sg.vendingmachine.model;
  * @author apprentice
  */
 public class Item {
-    private String item;
-    private double cost;
-    private int numberOfItems;
 
-    public String getItem() {
-        return item;
+    private String name;
+    private double cost;
+    private int numInInventory;
+    private int id;
+
+    public String getName() {
+        return name;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getCost() {
@@ -30,12 +32,19 @@ public class Item {
         this.cost = cost;
     }
 
-    public int getNumberOfItems() {
-        return numberOfItems;
+    public int getNumInInventory() {
+        return numInInventory;
     }
 
-    public void setNumberOfItems(int numberOfItems) {
-        this.numberOfItems = numberOfItems;
+    public void setNumInInventory(int numInInventory) {
+        this.numInInventory = numInInventory;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

@@ -104,6 +104,11 @@ public class DVDLibraryDAO {
         return dvdMap.remove(dvdId);
 
     }
+    
+    public int getDvdCount() {
+        return dvdMap.size();
+
+    }
 
     public DVD addDvd(Integer dvdId, DVD dvd) {
         return dvdMap.put(dvdId, dvd);
@@ -132,8 +137,9 @@ public class DVDLibraryDAO {
 
     }
 
-    public void update(DVD dvd) {
-     
-    }
 
+    public DVD update(Integer dvdId, DVD dvd) {
+        return dvdMap.put(dvdId, dvd);
+         }
 }
+

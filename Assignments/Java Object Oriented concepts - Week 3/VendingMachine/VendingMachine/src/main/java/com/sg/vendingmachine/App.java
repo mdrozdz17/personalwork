@@ -5,15 +5,16 @@
  */
 package com.sg.vendingmachine;
 
-import com.sg.vendingmachine.controller.VendingMachineController;
+import com.sg.vendingmachine.controller.ItemController;
+import java.io.IOException;
 
 /**
  *
  * @author apprentice
  */
 public class App {
-        public static void main(String[] args) {
-        VendingMachineController controller = new VendingMachineController();
+        public static void main(String[] args) throws IOException {
+        ItemController controller = new ItemController();
         controller.run();
     }
 }
