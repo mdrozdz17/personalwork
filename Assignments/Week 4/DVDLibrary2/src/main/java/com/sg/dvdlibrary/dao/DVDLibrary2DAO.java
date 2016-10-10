@@ -14,14 +14,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author apprentice
  */
-public class DVDLibraryDAO {
+public class DVDLibrary2DAO {
 
     public static final String DVD_FILE = "dvd.txt";
     public static final String DELIMITER = "::";
@@ -191,4 +195,87 @@ public class DVDLibraryDAO {
 
                 });
     }
-}
+        
+      public List<DVD> searchByYear(int date) {
+
+        return dvdMap
+                .values()
+                .stream()
+                .filter(d -> d.getReleaseDate()>= date)
+                .collect(
+                        Collectors.toList());
+
+    }
+      public double returnAverageUserRating(){
+        
+        OptionalDouble averageNotes = dvdMap
+                .values()
+                .stream()
+                .mapToDouble(d -> d.getUserRating().length())
+                .average();
+        
+        return averageNotes.getAsDouble();
+        
+    }
+
+    public double returnAvergageAge() {
+
+        OptionalDouble averageAge = dvdMap
+                .values()
+                .stream()
+                .mapToDouble(d -> d.getReleaseDate())
+                .average();
+
+        return averageAge.getAsDouble();
+    }
+
+    public int returnNewestMovieYear() {
+
+        OptionalInt newMovie = dvdMap
+                .values()
+                .stream()
+                .mapToInt(d -> d.getReleaseDate())
+                .max();
+
+        return newMovie.getAsInt();
+
+    }
+    
+     public int returnOldestMovieYear() {
+
+        OptionalInt oldestMovie = dvdMap
+                .values()
+                .stream()
+                .mapToInt(d -> d.getReleaseDate())
+                .min();
+
+        return oldestMovie.getAsInt();
+
+    }
+
+    public List<DVD> returnNewestMovies(int year) {
+
+        return dvdMap
+                .values()
+                .stream()
+                .filter(d -> d.getReleaseDate() == year)
+                .collect(
+                        Collectors.toList());
+
+    }
+    
+    public List<DVD> returnOldestMovies(int year) {
+
+        return dvdMap
+                .values()
+                .stream()
+                .filter(d -> d.getReleaseDate() == year)
+                .collect(
+                        Collectors.toList());
+
+    }
+
+            
+        }
+    
+

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.addressbook;
+package com.sg.addressbook.dao;
 
+import com.sg.addressbook.ui.ConsoleIO;
+import com.sg.addressbook.dto.Address;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

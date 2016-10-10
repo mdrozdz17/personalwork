@@ -7,10 +7,11 @@ package com.sg.dvdlibrary.controllers;
 
 import com.sg.dvdlibrary.ui.ConsoleIO;
 import com.sg.dvdlibrary.models.DVD;
-import com.sg.dvdlibrary.dao.DVDLibraryDAO;
+import com.sg.dvdlibrary.dao.DVDLibrary2DAO;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,11 +19,11 @@ import java.util.Set;
  *
  * @author apprentice
  */
-public class DVDLibraryController {
+public class DVDLibrary2Controller {
 
     private HashMap<Integer, DVD> dvdMap = new HashMap<Integer, DVD>();
 
-    private DVDLibraryDAO myDvd = new DVDLibraryDAO();
+    private DVDLibrary2DAO myDvd = new DVDLibrary2DAO();
     private ConsoleIO con = new ConsoleIO();
 
     public void run() {
@@ -181,7 +182,7 @@ public class DVDLibraryController {
         int menuSelection = 0;
 
         printSearchMenu();
-        menuSelection = con.readInt("Please select from the above choices.", 1, 3);
+        menuSelection = con.readInt("Please select from the above choices.", 1, 8);
 
         switch (menuSelection) {
 
@@ -196,6 +197,22 @@ public class DVDLibraryController {
             case 3:
                 String studio = con.readString("Please enter the Studio you would like to search for");
                 myDvd.getStudio(studio);
+                break;
+            case 4:
+                int year = con.readInt("Enter year");
+                printByGivenYear(year);
+                break;
+            case 5:
+                printAverageAge();
+                break;
+            case 6:
+                printNewestMovies();
+                break;
+            case 7:
+                printOldestMovies();
+                break;
+            case 8:
+                printAverageUserRating();
                 break;
             default:
                 con.print("Unknown Command");
@@ -217,6 +234,73 @@ public class DVDLibraryController {
     private void dvdByStudio() {
         String studio = con.readString("Please enter the Studio you would like to search for");
         myDvd.getStudio(studio);
+    }
+
+    void printAverageUserRating() {
+
+        double average = myDvd.returnAverageUserRating();
+
+        con.readString("The average amount of notes associated with a movie is " + average + "\n");
+
+    }
+
+    public void printByGivenYear(int year) {
+
+        List<DVD> list = myDvd.searchByYear(year);
+
+        list.stream().forEach(d -> printDVDs(d));
+
+    }
+
+    void printOldestMovies() {
+
+        int oldMovie = myDvd.returnOldestMovieYear();
+
+        List<DVD> oldies = myDvd.returnOldestMovies(oldMovie);
+
+        con.print("The Oldest Movie(s) in your collection is from " + oldMovie + "\n");
+
+        oldies.stream().forEach(d -> con.readString(d.getTitle() + "\n"));
+
+    }
+
+    void printNewestMovies() {
+
+        int newMovie = myDvd.returnNewestMovieYear();
+
+        List<DVD> newbies = myDvd.returnNewestMovies(newMovie);
+
+        con.print("The Newest Movie(s) in your collection is from " + newMovie + "\n");
+
+        newbies.stream().forEach(d -> con.readString(d.getTitle() + "\n"));
+
+    }
+
+    void printAverageAge() {
+
+        double average = myDvd.returnAvergageAge();
+
+        average = 2016 - average;
+
+        con.readString("The average age of a movie in your collection is " + average + " years old");
+        con.readString("");
+
+    }
+
+    void printDVDs(DVD d) {
+
+        con.print("\t ---------------------------------");
+        con.print("\t Title:        " + d.getTitle());
+        con.print("\t ---------------------------------");
+        con.print("\t Director:     " + d.getDirectorsName());
+        con.print("\t ---------------------------------");
+        con.print("\t Release Date: " + Integer.toString(d.getReleaseDate()));
+        con.print("\t ---------------------------------");
+        con.print("\t MPAA Rating:  " + d.getMpaaRating());
+        con.print("\t ---------------------------------");
+        con.print("\t Studio Name:  " + d.getStudio());
+        con.print("\t ---------------------------------");
+
     }
 
     private void editDvd() {
@@ -280,6 +364,13 @@ public class DVDLibraryController {
         con.print("1. MPAA-Rating");
         con.print("2. Director's Name");
         con.print("3. Studio");
+        con.print("4. Movies in last N years");
+        con.print("5. Print Average Age of Movies in DVD Library");
+        con.print("6. Print Newest Movies in DVD Library");
+        con.print("7. Print Oldest Movies in DVD Library");
+        con.print("8. Print Average User Rating for Movies");
+
+        
 
     }
 }

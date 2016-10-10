@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.addressbook;
+package com.sg.addressbook.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

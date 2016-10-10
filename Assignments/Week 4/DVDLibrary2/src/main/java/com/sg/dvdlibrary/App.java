@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.addressbook;
+package com.sg.dvdlibrary;
 
-import com.sg.addressbook.controller.AddressBookController;
+import com.sg.dvdlibrary.controllers.DVDLibrary2Controller;
 
 /**
  *
  * @author apprentice
  */
 public class App {
-
-    public static void main(String[] args) {
-        AddressBookController controller = new AddressBookController();
+        public static void main(String[] args) {
+        DVDLibrary2Controller controller = new DVDLibrary2Controller();
         controller.run();
     }
 }
+
