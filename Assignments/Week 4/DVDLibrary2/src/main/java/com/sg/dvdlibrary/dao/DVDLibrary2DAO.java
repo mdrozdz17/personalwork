@@ -25,257 +25,46 @@ import java.util.stream.Collectors;
  *
  * @author apprentice
  */
-public class DVDLibrary2DAO {
-
-    public static final String DVD_FILE = "dvd.txt";
-    public static final String DELIMITER = "::";
-    private int dvdID = 1;
-    private ConsoleIO con = new ConsoleIO();
-
-    private HashMap<Integer, DVD> dvdMap = new HashMap();
-
-    public void decode() throws FileNotFoundException {
-        Scanner sc = new Scanner(new BufferedReader(new FileReader(DVD_FILE)));
-        String[] currentTokens;
-        while (sc.hasNextLine()) {
-            //con.print(sc.nextLine());
-            String currentLine = sc.nextLine();
-            currentTokens = currentLine.split(DELIMITER);
-
-            DVD currentDVD = new DVD();
-
-            currentDVD.setDvdId(Integer.parseInt((currentTokens[0])));
-            currentDVD.setTitle(currentTokens[1]);
-            currentDVD.setReleaseDate(Integer.parseInt((currentTokens[2])));
-            currentDVD.setMpaaRating(currentTokens[3]);
-            currentDVD.setDirectorsName(currentTokens[4]);
-            currentDVD.setStudio(currentTokens[5]);
-            currentDVD.setUserRating(currentTokens[6]);
-
-            dvdMap.put(Integer.parseInt((currentTokens[0])), currentDVD);
-        }
-
-    }
-
-    public void encode() throws IOException {
-        PrintWriter out = new PrintWriter(new FileWriter(DVD_FILE));
-        Set<Integer> keySet = dvdMap.keySet();
-        for (Integer i : keySet) {
-
-            out.print((dvdMap.get(i)).getDvdId());
-            out.print(DELIMITER);
-
-            out.print((dvdMap.get(i)).getTitle());
-            out.print(DELIMITER);
-
-            out.print((dvdMap.get(i)).getReleaseDate());
-            out.print(DELIMITER);
-
-            out.print((dvdMap.get(i)).getMpaaRating());
-            out.print(DELIMITER);
-
-            out.print((dvdMap.get(i)).getDirectorsName());
-            out.print(DELIMITER);
-
-            out.print((dvdMap.get(i)).getStudio());
-            out.print(DELIMITER);
-
-            out.print((dvdMap.get(i)).getUserRating());
-            out.println("");
-
-        }
-        out.flush();
-        out.close();
-    }
-
-    public Integer[] getDvdIdList() {
-        Set<Integer> keySet = dvdMap.keySet();
-        Integer[] keyArray = new Integer[keySet.size()];
-        keyArray = keySet.toArray(keyArray);
-        return keyArray;
-    }
-
-    public DVD getDvd(Integer dvdId) {
-        return dvdMap.get(dvdId);
-    }
-
-    public DVD removeDvd(Integer dvdId) {
-        return dvdMap.remove(dvdId);
-
-    }
-
-    public int getDvdCount() {
-        return dvdMap.size();
-
-    }
-
-    public DVD addDvd(Integer dvdId, DVD dvd) {
-        return dvdMap.put(dvdId, dvd);
-    }
-
-    public DVD findByTitle(String title) {
-        Set<Integer> keySet = dvdMap.keySet();
-        // create an instance of DVD to return it
-        DVD tempDvd = new DVD();
-        for (Integer i : keySet) {
-
-            if ((dvdMap.get(i)).getTitle().equals(title)) {
-                // if ((dvdMap.get(i)).getTitle().matches(",*[a-z].*")); {
-
-                //set tempDvd to dvdMap to be able to return it
-                tempDvd = dvdMap.get(i);
-                con.print("ID: " + i);
-                con.print("Title: " + (dvdMap.get(i)).getTitle());
-                con.print("Release Date: " + (dvdMap.get(i)).getReleaseDate());
-                con.print("MPAA Rating: " + (dvdMap.get(i)).getMpaaRating());
-                con.print("Studio: " + (dvdMap.get(i)).getStudio());
-                con.print("Directors Name: " + (dvdMap.get(i)).getDirectorsName());
-                con.print("User Rating: " + (dvdMap.get(i)).getUserRating());
-
-            }
-
-        }
-        // return tempDvd from instance of DVD
-        return tempDvd;
-
-    }
-
-    public DVD update(Integer dvdId, DVD dvd) {
-        return dvdMap.put(dvdId, dvd);
-    }
-
-    public void getDvdByRating(String rating) {
-        dvdMap
-                .values()
-                .stream()
-                .filter(r -> r.getMpaaRating().equalsIgnoreCase(rating))
-                .forEach((DVD d) -> {
-                    con.print(d.getDvdId()+ " " );
-                    con.print(d.getTitle() + " " );
-                    con.print(d.getReleaseDate() + " ");
-                    con.print(d.getDirectorsName() + " ");
-                    con.print(d.getStudio() + " ");
-                    con.print(d.getUserRating() + " ");
-                    con.print("=====================================");
-
-                });
-
-    }
-
-    public void getDirector(String director) {
-       dvdMap
-                .values()
-                .stream()
-                .filter(d -> d.getDirectorsName().equalsIgnoreCase(director))
-                .forEach((DVD d) -> {
-                    con.print(d.getDvdId()+ " " );
-                    con.print(d.getTitle() + " " );
-                    con.print(d.getReleaseDate() + " ");
-                    con.print(d.getMpaaRating() + " ");
-                    con.print(d.getStudio() + " ");
-                    con.print(d.getUserRating() + " ");
-                    con.print("=====================================");
-
-                });
-    }
-
-    public void getStudio(String studio) {
-        dvdMap
-                .values()
-                .stream()
-                .filter(s -> s.getStudio().equalsIgnoreCase(studio))
-                .forEach((DVD d) -> {
-                    con.print(d.getDvdId()+ " " );
-                    con.print(d.getTitle() + " " );
-                    con.print(d.getReleaseDate() + " ");
-                    con.print(d.getMpaaRating() + " ");
-                    con.print(d.getDirectorsName() + " ");
-                    con.print(d.getUserRating() + " ");
-                    con.print("=====================================");
-
-                });
-    }
-        
-      public List<DVD> searchByYear(int date) {
-
-        return dvdMap
-                .values()
-                .stream()
-                .filter(d -> d.getReleaseDate()>= date)
-                .collect(
-                        Collectors.toList());
-
-    }
-      public double returnAverageUserRating(){
-        
-        OptionalDouble averageNotes = dvdMap
-                .values()
-                .stream()
-                .mapToDouble(d -> d.getUserRating().length())
-                .average();
-        
-        return averageNotes.getAsDouble();
-        
-    }
-
-    public double returnAvergageAge() {
-
-        OptionalDouble averageAge = dvdMap
-                .values()
-                .stream()
-                .mapToDouble(d -> d.getReleaseDate())
-                .average();
-
-        return averageAge.getAsDouble();
-    }
-
-    public int returnNewestMovieYear() {
-
-        OptionalInt newMovie = dvdMap
-                .values()
-                .stream()
-                .mapToInt(d -> d.getReleaseDate())
-                .max();
-
-        return newMovie.getAsInt();
-
-    }
+public interface DVDLibrary2DAO {
     
-     public int returnOldestMovieYear() {
-
-        OptionalInt oldestMovie = dvdMap
-                .values()
-                .stream()
-                .mapToInt(d -> d.getReleaseDate())
-                .min();
-
-        return oldestMovie.getAsInt();
-
-    }
-
-    public List<DVD> returnNewestMovies(int year) {
-
-        return dvdMap
-                .values()
-                .stream()
-                .filter(d -> d.getReleaseDate() == year)
-                .collect(
-                        Collectors.toList());
-
-    }
+    public void decode() throws FileNotFoundException;
+    public void encode() throws IOException;
+    public Integer[] getDvdIdList();
+    public DVD getDvd(Integer dvdId);
+    public DVD removeDvd(Integer dvdId);
+    public int getDvdCount();
+    public DVD addDvd(Integer dvdId, DVD dvd);
+    public DVD findByTitle(String title);
+    public DVD update(Integer dvdId, DVD dvd);
+    public void getDvdByRating(String rating);
+    public void getDirector(String director);
+    public void getStudio(String studio);
+    public List<DVD> searchByYear(int date);
+    public double returnAverageUserRating();
+    public double returnAvergageAge();
+    public int returnNewestMovieYear();
+    public int returnOldestMovieYear();
+    public List<DVD> returnNewestMovies(int year);
+    public List<DVD> returnOldestMovies(int year);
     
-    public List<DVD> returnOldestMovies(int year) {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-        return dvdMap
-                .values()
-                .stream()
-                .filter(d -> d.getReleaseDate() == year)
-                .collect(
-                        Collectors.toList());
 
-    }
-
-            
         }
     
 

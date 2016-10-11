@@ -5,6 +5,7 @@
  */
 
 import com.sg.dvdlibrary.dao.DVDLibrary2DAO;
+import com.sg.dvdlibrary.dao.DvdLibraryImpl;
 import com.sg.dvdlibrary.models.DVD;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
  * @author apprentice
  */
 public class DVD2Test {
-    DVDLibrary2DAO testDao = new DVDLibrary2DAO();
+    DvdLibraryImpl testDao = new DvdLibraryImpl();
     
     public DVD2Test() {
     }

@@ -5,7 +5,7 @@
  */
 
 import com.sg.addressbook2.dto.Address;
-import com.sg.addressbook2.dao.AddressBook2DAO;
+import com.sg.addressbook2.dao.AddressBookImpl;
 import java.util.HashMap;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  */
 public class AddressBook2Tests {
 
-    AddressBook2DAO testDao = new AddressBook2DAO();
+    AddressBookImpl testDao = new AddressBookImpl();
     //HashMap not needed as instance of the DAO calls the values that are stored
     // in the HashMap
 

@@ -7,7 +7,7 @@ package com.sg.dvdlibrary.controllers;
 
 import com.sg.dvdlibrary.ui.ConsoleIO;
 import com.sg.dvdlibrary.models.DVD;
-import com.sg.dvdlibrary.dao.DVDLibrary2DAO;
+import com.sg.dvdlibrary.dao.DvdLibraryImpl;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class DVDLibrary2Controller {
 
     private HashMap<Integer, DVD> dvdMap = new HashMap<Integer, DVD>();
 
-    private DVDLibrary2DAO myDvd = new DVDLibrary2DAO();
+    private DvdLibraryImpl myDvd = new DvdLibraryImpl();
     private ConsoleIO con = new ConsoleIO();
 
     public void run() {

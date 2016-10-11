@@ -6,7 +6,7 @@
 package com.sg.addressbook2.controller;
 
 import com.sg.addressbook2.ui.ConsoleIO;
-import com.sg.addressbook2.dao.AddressBook2DAO;
+import com.sg.addressbook2.dao.AddressBookImpl;
 import com.sg.addressbook2.dto.Address;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class AddressBook2Controller {
 
     private HashMap<Integer, Address> addressMap = new HashMap<Integer, Address>();
 
-    private AddressBook2DAO myAddresses = new AddressBook2DAO();
+    private AddressBookImpl myAddresses = new AddressBookImpl();
     private ConsoleIO con = new ConsoleIO();
 
     public void run() {

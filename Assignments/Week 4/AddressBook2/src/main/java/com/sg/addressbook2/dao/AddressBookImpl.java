@@ -5,8 +5,8 @@
  */
 package com.sg.addressbook2.dao;
 
-import com.sg.addressbook2.ui.ConsoleIO;
 import com.sg.addressbook2.dto.Address;
+import com.sg.addressbook2.ui.ConsoleIO;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,7 +14,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -23,7 +22,8 @@ import java.util.stream.Collectors;
  *
  * @author apprentice
  */
-public class AddressBook2DAO {
+public class AddressBookImpl implements AddressBook2Dao {
+    
 
     public static final String ADDRESS_FILE = "address.txt";
     public static final String DELIMITER = "::";
@@ -34,6 +34,7 @@ public class AddressBook2DAO {
     List<Address> addressBook = new ArrayList<>();
 
     // private HashMap<Integer, Address> addressMap = new HashMap<Integer, Address>();
+    @Override
     public void decode() throws FileNotFoundException {
         Scanner sc = new Scanner(new BufferedReader(new FileReader(ADDRESS_FILE)));
         String[] currentTokens;
@@ -55,6 +56,7 @@ public class AddressBook2DAO {
         }
     }
 
+    @Override
     public void encode() throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(ADDRESS_FILE));
             for (Address a: addressBook) {
@@ -89,10 +91,12 @@ public class AddressBook2DAO {
 
     }
 
+    @Override
     public Address removeAddress(int addressId) {
         return addressBook.remove(addressId);
     }
 
+    @Override
     public List<Address> getAddressId(int addressId) {
         return addressBook
                 .stream()
@@ -101,11 +105,13 @@ public class AddressBook2DAO {
 
     }
 
+    @Override
     public void addAddress(Address address) {
         addressBook.add(address);
 
     }
 
+    @Override
     public void getAddressByLastName(String lastName) {
         addressBook
                 .stream()
@@ -121,6 +127,7 @@ public class AddressBook2DAO {
 
     }
 
+    @Override
     public void getAddressByCity(String city) {
 
         addressBook
@@ -137,6 +144,7 @@ public class AddressBook2DAO {
                 });
     }
 
+    @Override
     public void getAddressByState(String state) {
         addressBook
                 .stream()
@@ -152,6 +160,7 @@ public class AddressBook2DAO {
                 });
     }
 
+    @Override
     public void getAddressByZip(String zip) {
         addressBook
                 .stream()
@@ -166,18 +175,24 @@ public class AddressBook2DAO {
                 });
     }
 
+    @Override
     public List<Address> list() {
         return addressBook;
 
     }
 
+    @Override
     public List<Address> editAddress(Address address) {
         return addressBook;
 
     }
 
+    @Override
     public void removeAddress(Address testAddress) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
+
+    
+
