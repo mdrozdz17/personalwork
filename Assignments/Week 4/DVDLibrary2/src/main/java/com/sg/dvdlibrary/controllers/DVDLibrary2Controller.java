@@ -248,7 +248,8 @@ public class DVDLibrary2Controller {
 
         List<DVD> list = myDvd.searchByYear(year);
 
-        list.stream().forEach(d -> printDVDs(d));
+        list.stream()
+        .forEach(d -> printDVDs(d));
 
     }
 

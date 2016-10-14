@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+">
+    
+    <bean id="OrderdaoFileImpl" class="com.sg.flooringmaster.dao.OrderDaoFileImpl" />
+    <bean id="OrderdaoMemImpl" class="com.sg.flooringmaster.dao.OrderDaoInMemImpl" />
+    <bean id="TaxDao" class="com.sg.flooringmaster.dao.TaxDao" />
+    <bean id="ProductDao" class="com.sg.flooringmaster.dao.ProductDao" />
+    
+    <bean id="FlooringMasterControllerFileIO" class="com.sg.flooringmaster.ops.FlooringMasterController" >
+        <constructor-arg ref="OrderdaoFileImpl" />
+        <constructor-arg ref="TaxDao" />
+        <constructor-arg ref="ProductDao" />
+    </bean>
+    <bean id="FlooringMasterControllerInMem" class="com.sg.flooringmaster.ops.FlooringMasterController" >
+        <constructor-arg ref="OrderdaoMemImpl" />
+        <constructor-arg ref="TaxDao" />
+        <constructor-arg ref="ProductDao" />
+    </bean>
+
+</beans>
