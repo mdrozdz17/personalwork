@@ -38,7 +38,7 @@ public class FlooringMasterController {
 }
 
     public void run() {
-
+        String date = orderDao.setDate();
         boolean keepGoing = true;
         int menuSelection = 0;
 
@@ -66,7 +66,8 @@ public class FlooringMasterController {
                     break;
                 case 5:
                     con.print("Save data");
-                //method goes here
+                 orderDao.save(date);
+                 con.print("Order successfully saved");
                 case 6:
                     keepGoing = false;
                     break;
