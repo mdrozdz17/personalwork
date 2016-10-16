@@ -55,7 +55,7 @@ public class OrderDaoFileImpl implements OrderDao {
 
     @Override
     public Order readOrder(Integer id) {
-
+        //readOrder by ID (customerNumber);
         for (Order order : orders) {
             if (Objects.equals(order.getId(), id)) {
                 return order;
@@ -74,7 +74,7 @@ public class OrderDaoFileImpl implements OrderDao {
 
             if (o.getId() == order.getId()) {
 
-                litr.set(order);
+                litr.set(order); //.set replaces last element return by litr.next
 
             }
         }
@@ -230,12 +230,12 @@ public class OrderDaoFileImpl implements OrderDao {
     @Override
     public void load(String date) {
         readOrderData(date);
-        // do nothing
+        // do nothing - for interfaces
     }
     @Override
     public void save(String date) {
         saveOrderData(date);
-        // do nothing
+        // do nothing - for interfaces
 
     }
 

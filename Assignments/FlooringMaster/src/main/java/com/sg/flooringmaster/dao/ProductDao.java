@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 /**
@@ -60,11 +61,25 @@ public class ProductDao {
     // @Override
     public void editProduct(Product product) {
 
-        for (Product pd : products) {
-            if (pd.getId().equals(product.getId())) {
-                products.remove(pd);
-                products.add(product);
-                break;
+     //   for (Product pd : products) {
+      //      if (pd.getId().equals(product.getId())) {
+        //        products.remove(pd);
+        //        products.add(product);
+         //      break;
+          //  }
+       // }
+      //  saveProductData();
+   // }
+    
+         ListIterator litr = products.listIterator();
+        while (litr.hasNext()) {
+
+            Product p = (Product) litr.next(); //litr.next returns the next element in the list
+
+            if (p.getId() == product.getId()) {
+
+                litr.set(product); //.set replaces last element return by litr.next
+
             }
         }
         saveProductData();

@@ -12,19 +12,6 @@ package com.sg.flooringmaster.ops;
  * @author apprentice
  */
 public class FlooringMasterBusinessLogic {
-    private String date;
-    private Integer id;
-    private String customerName;
-    private String stateName;
-    private Double stateTaxes;
-    private String productType;
-    private Double materialCost;
-    private Double laborCost;
-    private Double area;
-    private Double materialTotal;
-    private Double laborTotal;
-    private Double tax;
-    private Double totalCost;
     
      public Double materialTotal(double area, double productCost) {
 

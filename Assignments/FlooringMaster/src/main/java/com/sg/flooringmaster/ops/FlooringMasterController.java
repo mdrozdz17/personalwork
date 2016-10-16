@@ -150,14 +150,14 @@ public class FlooringMasterController {
 
             orderDao.addOrder(placeOrder);
 
-            addAnOrder = myUI.confirmation("Press (1) to proceed or (2) to go back");
+            addAnOrder = myUI.confirmation("Press (1) to save order or (2) to cancel order");
             if (addAnOrder == true) {
                 con.print("Order has been placed");
 
             } else {
                 con.print("Order Cancelled");
             }
-            addAnOrder = myUI.returnToMenu("Enter (1) to return to the menu and (2) to continue adding orders");
+            addAnOrder = myUI.returnToMenu("Enter (1) to return to the main menu and (2) to continue adding orders");
         }
     }
 
@@ -170,13 +170,13 @@ public class FlooringMasterController {
             String searchDate = con.printString("Enter the date of the order (MM-DD-YYYY)");
 
             remove = myUI.confirmation("IF " + searchDate + " Is correct enter (1) if not enter (2)");
-            if (remove == false) {
-                remove = myUI.confirmation("To retry enter (1) to exit enter (2)");
+            if (remove == false) { // If false prompt user to re-enter date or exit to main menu
+                remove = myUI.confirmation("To retry enter (1) to exit to main menu enter (2)");
             } else {
 
                 int id = con.readInt("Enter the Order Number");
                 if (remove == true) {
-
+                    // if id matches id
                     Order orderId = orderDao.readOrder(id);
 
                     remove = myUI.confirmation("Enter (1) to confirm deletion OR (2) to cancel");

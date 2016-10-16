@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Scanner;
 
 /**
@@ -60,11 +61,15 @@ public class TaxDao {
     // @Override
     public void editStateTax(Tax taxRate) {
 
-        for (Tax stateTax : tax) {
-            if (stateTax.getId().equals(taxRate.getId())) {
-                tax.remove(stateTax);
-                tax.add(taxRate);
-                break;
+        ListIterator litr = tax.listIterator();
+        while (litr.hasNext()) {
+
+            Tax t = (Tax) litr.next(); //litr.next returns the next element in the list
+
+            if (t.getId() == taxRate.getId()) {
+
+                litr.set(tax); //.set replaces last element return by litr.next
+
             }
         }
         saveTaxData();
