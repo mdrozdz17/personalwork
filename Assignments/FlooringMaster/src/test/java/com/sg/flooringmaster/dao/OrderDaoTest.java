@@ -56,7 +56,7 @@ public class OrderDaoTest {
     @Test
     public void testAgaisntEmptyDao() {
         String date = "";
-        assertEquals("Expected order count does not match after adding one pet.", 0, testDao.readAllOrders(date).size());
+        assertEquals("Expected order count does not match after adding one order.", 0, testDao.readAllOrders(date).size());
 
     }
 
@@ -64,11 +64,10 @@ public class OrderDaoTest {
     public void testAddOneOrder() {
         Order orderToAdd = ordersForTesting[0];
         testDao.addOrder(orderToAdd);
-        assertEquals("Expected Order count does not match after adding one pet.", 1, testDao.getOrderCount());
+        assertEquals("Expected Order count does not match after adding one order.", 1, testDao.getOrderCount());
         assertEquals("Returned Order does not match expected.", orderToAdd, testDao.readOrder(orderToAdd.getId()));
         assertNotNull("List of all pets should not be null.", testDao.getOrderCount());
         assertEquals("Expected Order count of 'all Orders' does not match after adding one order.", 1, testDao.getOrderCount());
-        // assertFalse("Returned Orders in readAllOrders does not match expected.", testDao.readAllOrders(date).contains(orderToAdd));
 
     }
 
@@ -92,22 +91,22 @@ public class OrderDaoTest {
         }
 
         int ordersAdded = ordersForTesting.length;
-        for (int i = 0; i < ordersForTesting.length; i += 2) {
+        for (int i = 0; i < ordersForTesting.length; i += 2) { // i = i + 2
             testDao.removeOrder(ordersForTesting[i], ordersForTesting[i].getDate());
             ordersAdded--;
 
         }
 
-        assertEquals("Expected pet count does not match after adding two pets.", ordersAdded, testDao.getOrderCount());
-        assertNotNull("List of all pets should not be null.", testDao.getOrderCount());
-        assertEquals("Expected pet count of 'all pets' does not match after adding & removing several pets.",
+        assertEquals("Expected order count does not match after adding two orders.", ordersAdded, testDao.getOrderCount());
+        assertNotNull("List of all orders should not be null.", testDao.getOrderCount());
+        assertEquals("Expected order count of 'all orders' does not match after adding & removing several orders.",
                 ordersAdded, testDao.getOrderCount());
 
         for (int i = 0; i < ordersForTesting.length; i++) {
             if (i % 2 == 1) {
-                assertEquals("Returned pet does not match expected.", ordersForTesting[i], testDao.readOrder(ordersForTesting[i].getId()));
+                assertEquals("Returned order does not match expected.", ordersForTesting[i], testDao.readOrder(ordersForTesting[i].getId()));
             } else {
-                assertNull("Pet should be removed and return null.", testDao.readOrder(ordersForTesting[i].getId()));
+                assertNull("Order should be removed and return null.", testDao.readOrder(ordersForTesting[i].getId()));
             }
         }
 

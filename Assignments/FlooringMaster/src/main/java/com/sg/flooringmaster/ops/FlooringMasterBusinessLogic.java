@@ -5,6 +5,9 @@
  */
 package com.sg.flooringmaster.ops;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 
 
 /**
@@ -12,15 +15,18 @@ package com.sg.flooringmaster.ops;
  * @author apprentice
  */
 public class FlooringMasterBusinessLogic {
+      DecimalFormat df = new DecimalFormat("#.00");
+
     
      public Double materialTotal(double area, double productCost) {
+         
 
         double materialTotal = area * productCost;
 
-        materialTotal = Math.round(materialTotal * 100);
+        materialTotal = materialTotal * 100;
         materialTotal = materialTotal / 100;
 
-        return materialTotal;
+        return Double.valueOf(df.format(materialTotal));
 
     }
 
@@ -28,10 +34,10 @@ public class FlooringMasterBusinessLogic {
 
         double laborTotal = area * laborCost;
 
-        laborTotal = Math.round(laborTotal * 100);
+        laborTotal = laborTotal * 100;
         laborTotal = laborTotal / 100;
 
-        return laborTotal;
+        return Double.valueOf(df.format(laborTotal));
     }
 
     public Double tax(double area, double tax, double laborCost, double productCost) {
@@ -46,10 +52,10 @@ public class FlooringMasterBusinessLogic {
 
         double totalTax = tax * costBeforeTax;
 
-        totalTax = Math.round(totalTax * 100);
-        totalTax = totalTax / 100;
+        totalTax = totalTax * 100;
+         totalTax = totalTax / 100;
 
-        return totalTax;
+        return Double.valueOf(df.format(totalTax));
     }
 
     public Double total(double tax, double labor, double product) {
@@ -62,9 +68,9 @@ public class FlooringMasterBusinessLogic {
 
         double grandTotal = totalTax + labor + product;
 
-        grandTotal = Math.round(grandTotal * 100);
+        grandTotal = (grandTotal * 100) * 10;
 
-        return grandTotal;
+        return Double.valueOf(df.format(grandTotal));
     }
 }
     

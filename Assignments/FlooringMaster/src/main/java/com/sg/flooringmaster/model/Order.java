@@ -5,11 +5,16 @@
  */
 package com.sg.flooringmaster.model;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 /**
  *
  * @author apprentice
  */
 public class Order {
+
+    DecimalFormat df = new DecimalFormat("#.00");
 
     private String date;
     private Integer id;
@@ -24,33 +29,29 @@ public class Order {
     private Double laborTotal;
     private Double tax;
     private Double totalCost;
-    
-    
-    
+
     public Order() { // Put default constructor first if going to use an overloaded Constructor
-        
+
     }
 
     // Created overloaded constructor to use for testing
-    public Order (int id, String customerName, String stateName, Double stateTaxes, 
-            String productType, Double materialCost, Double laborCost, Double area, 
+    public Order(int id, String customerName, String stateName, Double stateTaxes,
+            String productType, Double materialCost, Double laborCost, Double area,
             Double materialTotal, Double laborTotal, Double tax, Double totalCost) {
-       this.id = id;
-       this.customerName = customerName;
-       this.stateName = stateName;
-       this.stateTaxes = stateTaxes;
-       this.productType = productType;
-       this.materialCost = materialCost;
-       this.laborCost = laborCost;
-       this.area = area;
-       this.materialTotal = materialTotal;
-       this.laborTotal=laborTotal;
-       this.tax = tax;
-       this.totalCost = totalCost;
-       
-       
-    }
+        this.id = id;
+        this.customerName = customerName;
+        this.stateName = stateName;
+        this.stateTaxes = stateTaxes;
+        this.productType = productType;
+        this.materialCost = materialCost;
+        this.laborCost = laborCost;
+        this.area = area;
+        this.materialTotal = materialTotal;
+        this.laborTotal = laborTotal;
+        this.tax = tax;
+        this.totalCost = totalCost;
 
+    }
 
     public String getDate() {
         return date;
@@ -148,12 +149,26 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public Double getArea() {
+    public double getArea() {
         return area;
     }
 
     public void setArea(Double area) {
         this.area = area;
+    }
+    
+    // Must use toString method in controller to get number format to print out with 2 decimals and $
+       @Override
+    public String toString() {
+        return "Order Number: " + id + "\nCustomer Name: " + customerName + "\nState: " + stateName
+                + "\nTax Rate: " + stateTaxes + "\nProduct Type: " + productType
+                + "\nArea: " + df.format(area) + "\nMaterial Cost Per Square Foot: " 
+                + NumberFormat.getCurrencyInstance().format(materialCost)
+                + "\nLabor Cost Per Square Foot: " + NumberFormat.getCurrencyInstance().format(laborCost) + "\nMaterial Total: "
+                + NumberFormat.getCurrencyInstance().format(materialTotal) + "\nLabor Total: " 
+                + NumberFormat.getCurrencyInstance().format(laborTotal) + "\nTax: "
+                + NumberFormat.getCurrencyInstance().format(tax) 
+                + "\nTotal Cost: " + NumberFormat.getCurrencyInstance().format(totalCost);
     }
 
 }

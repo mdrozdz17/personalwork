@@ -5,11 +5,15 @@
  */
 package com.sg.flooringmaster.model;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author apprentice
  */
 public class Product {
+   DecimalFormat df = new DecimalFormat("#.00");
+
 
     private Integer id;
     private String productType;
@@ -33,7 +37,7 @@ public class Product {
     }
 
     public Double getCost() {
-        return cost;
+        return Double.valueOf(df.format(cost));
     }
 
     public void setCost(Double cost) {
@@ -41,7 +45,7 @@ public class Product {
     }
 
     public Double getLaborCost() {
-        return laborCost;
+        return Double.valueOf(df.format(laborCost));
     }
 
     public void setLaborCost(Double laborCost) {

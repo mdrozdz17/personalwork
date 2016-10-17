@@ -5,11 +5,14 @@
  */
 package com.sg.flooringmaster.model;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author apprentice
  */
 public class Tax {
+    DecimalFormat df = new DecimalFormat("#.00");
 
     private Integer id;
     private String stateName;
@@ -32,7 +35,7 @@ public class Tax {
     }
 
     public Double getTaxRate() {
-        return taxRate;
+        return Double.valueOf(df.format(taxRate));
     }
 
     public void setTaxRate(Double taxRate) {

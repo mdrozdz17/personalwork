@@ -12,6 +12,7 @@ import com.sg.flooringmaster.dao.TaxDao;
 import com.sg.flooringmaster.model.Order;
 import com.sg.flooringmaster.ui.ConsoleIO;
 import com.sg.flooringmaster.ui.FlooringMasteryUI;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -29,6 +30,7 @@ public class FlooringMasterController {
     //private ProductDao productDao = new ProductDao();
     private FlooringMasterBusinessLogic myBL = new FlooringMasterBusinessLogic();
     private FlooringMasteryUI myUI = new FlooringMasteryUI();
+
     
    public FlooringMasterController(OrderDao orderDao, TaxDao taxDao, ProductDao productDao) {
        this.orderDao = orderDao;
@@ -94,13 +96,8 @@ public class FlooringMasterController {
                 displayOrders = myUI.validateOrder(foundOrders);
 
                 for (Order o : foundOrders) {
-                    con.print("Order Number: " + o.getId() + " \nNAME: " + o.getCustomerName()
-                            + " \nSTATE: " + o.getStateName() + " \nTAX RATE: " + o.getStateTaxes()
-                            + " \nPRODUCT TYPE: " + o.getProductType() + " \nAREA IN SQFT: "
-                            + o.getArea() + " \nMATERIAL COST: " + o.getMaterialCost()
-                            + " \nLABOR COST: " + o.getLaborCost() + " \nTOTAL PRODUCT COST: "
-                            + o.getMaterialTotal() + " \nTOTAL LABOR COST: " + o.getLaborCost()
-                            + " \nTOTAL TAX: " + o.getTax() + " \nTOTAL COST: " + o.getTotalCost());
+                             con.print(o.toString());
+                             con.print("=======================================");
                 }
 
             }
@@ -162,14 +159,17 @@ public class FlooringMasterController {
     }
 
     private void removeOrder() {
+         boolean displayOrders = true;
 
         boolean remove = true;
 
         while (remove) {
 
             String searchDate = con.printString("Enter the date of the order (MM-DD-YYYY)");
+            List<Order> foundOrders = orderDao.readAllOrders(searchDate);
 
-            remove = myUI.confirmation("IF " + searchDate + " Is correct enter (1) if not enter (2)");
+
+            remove = myUI.confirmation("If " + searchDate + " Is correct enter (1) if not enter (2)");
             if (remove == false) { // If false prompt user to re-enter date or exit to main menu
                 remove = myUI.confirmation("To retry enter (1) to exit to main menu enter (2)");
             } else {
@@ -209,8 +209,11 @@ public class FlooringMasterController {
             // if (update == false) {
             //    update = myUI.confirmation("IF YOU'D LIKE TO CONTINUE ENTER(1) IF NOT ENTER(2)");
             // } else {
+            
+            // To update an order a user must enter date and it must match in order for the order to be found
             List<Order> foundOrders = orderDao.readAllOrders(enterDate);
-
+            
+            // if search is empty returns cannot find order
             update = myUI.validateOrder(foundOrders);
 
             if (update == true) {
@@ -238,12 +241,16 @@ public class FlooringMasterController {
     }
 
     private void editOrder(Order editOrder, String date) {
-
+        int id = con.readInt("Please re-confirm your Order Number");
+       Order order = orderDao.readOrder(id);
+       
+        
+        
         con.print("Press Enter to Keep Existing Info...");
-        String name = con.printString("Enter New Name");
-        String state = con.printString("Enter a State (1)OH (2)PA (3)MI (4)IN");
-        String product = con.printString("Enter a Product Type (1)CARPET (2)LAMINATE (3)TILE (4)WOOD");
-        String area = con.printString("Enter the desire area of product in square feet");
+        String name = con.printString("Enter New Name (" + order.getCustomerName() + "):");
+        String state = con.printString("Enter a State ((1)OH (2)PA (3)MI (4)IN  (" + order.getStateName()+ "):");
+        String product = con.printString("Enter a Product Type ((1)CARPET (2)LAMINATE (3)TILE (4)WOOD (" + order.getProductType() + "):");
+        String area = con.printString("Enter the desired area of product in square feet (" + order.getArea() + "):");
 
 
         if (!name.isEmpty()) {
@@ -254,7 +261,6 @@ public class FlooringMasterController {
                 int stateId = Integer.parseInt(state);
                 String stateName = taxDao.readTaxId(stateId).getStateName();
                 editOrder.setStateName(stateName);
-
                 orderDao.editOrder(editOrder, date);
             }
 
@@ -262,7 +268,6 @@ public class FlooringMasterController {
                 int productId = Integer.parseInt(product);
                 String productName = productDao.readProductId(productId).getProductType();
                 editOrder.setProductType(productName);
-
                 orderDao.editOrder(editOrder, date);
             }
             if (!area.isEmpty()) {
