@@ -37,6 +37,7 @@ public class Factorizer {
             if (number % i == 0) {
                 System.out.println(i);
                 factorSum = factorSum +i;
+                
 
             }
         }

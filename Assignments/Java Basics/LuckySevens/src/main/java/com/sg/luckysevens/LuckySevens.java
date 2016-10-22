@@ -1,3 +1,5 @@
+package com.sg.luckysevens;
+
 
 import java.util.Random;
 import java.util.Scanner;
@@ -21,17 +23,15 @@ public class LuckySevens {
         int die2; // declare dice2
         int money; // How much $ was won or lost
         int mostMoneyHeld; // Most money held by the player at one point in time
-        int rollCountMax; // Roll Count Max when user had the most money
-        int rollCountTotal; // Total number of rolls when depletion was hit
+        int rollCountMax = 0; // Roll Count Max when user had the most money
+        int rollCountTotal = 0; // Total number of rolls when depletion was hit
 
         // Ask the user how many dollars they want to bet
         System.out.println("How many dollars do you have to bet?");
         money = sc.nextInt();
-
+        
         // Variables Initialized
         mostMoneyHeld = money;
-        rollCountMax = 0;
-        rollCountTotal = 0;
 
         // Looping until all money is depleted 
         while (money > 0) {
@@ -56,10 +56,11 @@ public class LuckySevens {
 
             }
         }
+        
 
         // Display the results
         System.out.println("You are broke after " + rollCountTotal + " rolls");
-        System.out.println(" You should have quit after " + rollCountMax
+        System.out.println("You should have quit after " + rollCountMax
                 + " rolls when you had $" + mostMoneyHeld + ".");
 
     }
