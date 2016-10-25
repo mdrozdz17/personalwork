@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.vendingmachine1;
+package com.sg.vendingmachine.model;
 
 /**
  *

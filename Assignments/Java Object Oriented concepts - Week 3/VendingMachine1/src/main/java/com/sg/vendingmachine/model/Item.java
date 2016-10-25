@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.vendingmachine1;
+package com.sg.vendingmachine.model;
+
+import java.text.DecimalFormat;
 
 /**
  *
  * @author apprentice
  */
 public class Item {
-
+ DecimalFormat d = new DecimalFormat("0.00");
     private String name;
     private double cost;
     private int numInInventory;
@@ -25,7 +27,7 @@ public class Item {
     }
 
     public double getCost() {
-        return cost;
+        return Double.valueOf(d.format(cost));
     }
 
     public void setCost(double cost) {

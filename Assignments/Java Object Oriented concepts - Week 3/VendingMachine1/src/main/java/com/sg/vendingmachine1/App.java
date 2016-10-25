@@ -6,17 +6,23 @@
 package com.sg.vendingmachine1;
 
 
-import java.io.IOException;
 
+import java.io.IOException;
+import com.sg.vendingmachine1.ops.ItemController;
 /**
  *
  * @author apprentice
+ * 
  */
 public class App {
-        public static void main(String[] args) throws IOException {
-        ItemController controller = new ItemController();
-        controller.run();
+    public static void main(String[] args){
+        
+        ItemController ic = new ItemController();
+        
+        ic.run();
+        
     }
 }
+    
 
 

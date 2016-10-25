@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.vendingmachine1;
+package com.sg.vendingmachine1.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -24,7 +24,7 @@ public class ConsoleIO {
     
 }
     
-    public String readString(String prompt) {
+    public String printString(String prompt) {
         Scanner mySc = new Scanner(System.in);
         System.out.println(prompt);
         return mySc.nextLine();

@@ -165,8 +165,6 @@ public class AddressBookController {
         currentAddress.setCity(City);
         currentAddress.setState(State);
         currentAddress.setZip(Zip);
-        
-       
 
         myAddresses.editAddress(addressId, currentAddress);
 
