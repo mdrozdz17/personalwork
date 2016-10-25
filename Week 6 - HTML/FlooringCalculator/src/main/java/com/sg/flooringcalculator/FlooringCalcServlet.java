@@ -77,6 +77,12 @@ public class FlooringCalcServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         DecimalFormat d = new DecimalFormat("0.00");
+        
+         int billingSQFT = 20;
+         double billingHours = 86;
+         double billingIncrement = .25;
+        
+        
         String w = request.getParameter("width");
         double width = Double.parseDouble(w);
         
@@ -87,10 +93,21 @@ public class FlooringCalcServlet extends HttpServlet {
         double cost = Double.parseDouble(c);
         
         double area = width * length;
+        
+        billingHours = area / billingIncrement;
+        
+        double laborCost = billingHours * billingIncrement;
+        
         double materialCost = area * cost;
+        
+        double totalCost = materialCost + laborCost;
+        
+        
         
         
         request.setAttribute("matCost", d.format(materialCost));
+        request.setAttribute("labCost", d.format(laborCost));
+        request.setAttribute("totalCost", d.format(totalCost));
         
         RequestDispatcher rd = request.getRequestDispatcher("response.jsp");
         

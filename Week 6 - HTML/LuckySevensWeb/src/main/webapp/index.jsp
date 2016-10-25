@@ -23,9 +23,17 @@
 
         <!-- Custom styles for this template -->
         <link href="css/starter-template.css" rel="stylesheet">
+        
+   <script>
+        <!--
+            function letsPlay() {
+               alert("Good Luck!")
+            }
+         //-->
+        </script>
 
     </head>
-    <body style="background-color:powderblue;">
+    <body style="background-color:powderblue;" onload=alert(today)>
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -47,15 +55,15 @@
         <div class="container">
 
             <div class="starter-template">
-               
+               <div id="animation"></div>
                 <center><img src="Lucky7.png" height="342" width="742" alt="Lucky">         
                  <h1>Welcome to Lucky Sevens!</h1>
                  <h4>How much money would you like to bet?</h4>
                 <form action="LuckySevensServlet" method="post">
                     <b>Input Money:</b>
-                     <input type="number" min= "0" max="1000000000" name="myInput"/><br/>
+                    <input type="number" min= "0" max="10000000" name="myInput" required/><br/>
                     <p></p>
-                    <button type="submit" class="btn btn-primary">Roll Dice</button>
+                    <button type="submit" onclick="letsPlay()" class="btn btn-primary">Roll Dice</button>
                 </center>
                 </form>
             </div>

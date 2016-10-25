@@ -12,14 +12,17 @@
         <title>Response</title>
     </head>
     <div class="container">
-    <body style="background-color:powderblue;">
-   <!-- <h1>The Answer is</h1> -->
-    <center><img src="cost.jpg" alt="Could Have" height="342" width="442">
-        <p></p>
-        <h1><a href="FlooringCalcServlet">Home</a></h1>
+        <body style="background-color:powderblue;">
+            <!-- <h1>The Answer is</h1> -->
+        <center><img src="cost.jpg" alt="Could Have" height="342" width="442">
             <p></p>
-    <p>The cost of the material is $${matCost} </p>
-    </center>
+            <h1><a href="FlooringCalcServlet">Home</a></h1>
+            <p></p>
+            <p>The cost of the material is $${matCost} </p>
+            <p>The cost of the labor is $${labCost} </p>
+            <p>The Total Cost $${totalCost} </p>
+
+        </center>
     </div>
-    </body>
+</body>
 </html>

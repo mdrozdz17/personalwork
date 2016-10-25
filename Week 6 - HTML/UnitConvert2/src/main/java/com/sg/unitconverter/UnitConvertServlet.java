@@ -1,15 +1,14 @@
-package com.sg.luckysevensweb;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.sg.unitconverter;
+
+import com.sg.unitconverter.model.Convert;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
-import java.util.Random;
-import java.util.Scanner;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,9 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author apprentice
  */
-@WebServlet(urlPatterns = {"/LuckySevensServlet"})
-public class LuckySevensServlet extends HttpServlet {
-
+@WebServlet(name = "UnitConvert", urlPatterns = {"/UnitConvertServlet"})
+public class UnitConvertServlet extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,7 +33,7 @@ public class LuckySevensServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.setContentType("text/html;charset=UTF-8");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +50,6 @@ public class LuckySevensServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
-
     }
 
     /**
@@ -66,57 +63,31 @@ public class LuckySevensServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        DecimalFormat d = new DecimalFormat("'$'0.00");
-        String myInput = request.getParameter("myInput");
-        int die1; // declare dice1
-        int die2; // declare dice2
-        double money; // How much $ was won or lost
-        double mostMoneyHeld; // Most money held by the player at one point in time
-        int rollCountMax = 0; // Roll Count Max when user had the most money
-        int rollCountTotal = 0; // Total number of rolls when depletion was hit
+        Convert convert = new Convert();
 
-        money = Double.parseDouble(myInput);
-        
-        mostMoneyHeld = money;
-        
-           while (money > 0) {
-            rollCountTotal++;
-            
-        Random rGen = new Random();
-        die1 = rGen.nextInt(6) + 1;
-        die2 = rGen.nextInt(6) + 1;
+        convert.setConversionType(request.getParameter("conversionType"));
+        convert.setFromUnit(request.getParameter("fromUnit"));
+        convert.setToUnit(request.getParameter("toUnit"));
+        convert.setFromValue(Double.parseDouble(request.getParameter("fromValue")));
 
-        
-        if (die1 + die2 == 7) {
-            money += 4; // win $4
-        } else {
-            money -= 1; // lose $1
-        }
-       
-        if (money > mostMoneyHeld) {
-            mostMoneyHeld = money;
-            rollCountMax = rollCountTotal;
-        }
-           }
-      
-       String broke = "You were broke after " + rollCountTotal + " rolls";
-       String quit = "You should have quit after " + rollCountMax
-                + " rolls when you had  " + d.format(mostMoneyHeld) + ".";
-        
-        request.setAttribute("broke", broke);
-        request.setAttribute("quit", quit);
-        
-
+        request.setAttribute("result", convert(convert));
 
         RequestDispatcher rd = request.getRequestDispatcher("response.jsp");
+        rd.forward(request, response);
+    }
 
-        rd.forward(request,response);
-        
-        processRequest(request, response);
-    
-           
-           }
-    
+    private Convert convert(Convert conversion) {
+        switch (conversion.getConversionType()) {
+            case "Temperature":
+                return TempConverter.convert(conversion);
+            case "Currency":
+                return CurrencyConverter.convert(conversion);
+            default:
+                return conversion;
+        }
+
+    }
+
     /**
      * Returns a short description of the servlet.
      *
@@ -125,7 +96,6 @@ public class LuckySevensServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
-}
+    }
+}// </editor-fold>
 

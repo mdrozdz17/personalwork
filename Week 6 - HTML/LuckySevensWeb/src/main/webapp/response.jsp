@@ -18,11 +18,11 @@
         <p></p>
         <h1><a href="LuckySevensServlet">Home</a></h1>
             <p></p>
-        <h4>Your starting bet was: $${param.dollar}</h4>
+        <h4>Your starting bet was: $${param.myInput}</h4>
             <p></p>
-            <h4>${message1}</h4>
+            <h4>${broke}</h4>
             <p></p>
-            <h4>${message2}</h4>
+            <h4>${quit}</h4>
             <p></p>
     </center>
     </div>
