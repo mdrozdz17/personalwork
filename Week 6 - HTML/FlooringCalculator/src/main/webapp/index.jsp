@@ -50,10 +50,17 @@
 
                 <center><img src="flooring.jpg" height="200" width="242" alt="Calc">         
                     <h1>Welcome to the Flooring Calculator!</h1>
+                    
                     <form action="FlooringCalcServlet" method="post">
+                        <div class="form-control">
                         Enter width of floor(feet)  <input type="number" step="0.001" min="0" name="width" required /><br>
+                        </div>
+                        <div class="form-control">
                         Enter length of floor(feet) <input type="number" step="0.001" min ="0" name="length" required/><br>
+                        </div>
+                        <div class="form-control">
                         Enter cost of flooring per Sq. Ft. $<input type="number" step="0.01" min ="0" name="cost" required/><br>
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                 </center>
                 </form>

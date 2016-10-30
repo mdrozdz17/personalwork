@@ -34,7 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://getbootstrap.com/examples/starter-template/#">Tip Calculator</a>
+                    <a class="navbar-brand" href="http://getbootstrap.com/examples/starter-template/#">Unit Converter</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">

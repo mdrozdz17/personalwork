@@ -7,6 +7,7 @@ package com.sg.contactlistmvc.dao;
 
 import com.sg.contactlistmvc.model.Contact;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -26,5 +27,14 @@ public interface ContactListDao {
     public void updateContact(Contact contact);
     // D - Delete
     public void removeContact(int contactId);
+    
+    // Search will allow us ot search by any field
+    // Our map may look something like this
+    // FIRST_NAME = "Eric"
+    // LAST_NAME =
+    // COMPANY = "TSG"
+    // EMAIL 
+    // PHONE
+    public List<Contact> searchContacts(Map<SearchTerm,String> criteria);
 
 }

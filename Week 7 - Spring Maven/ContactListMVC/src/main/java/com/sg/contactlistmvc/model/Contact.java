@@ -6,6 +6,9 @@
 package com.sg.contactlistmvc.model;
 
 import java.util.Objects;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -13,10 +16,21 @@ import java.util.Objects;
  */
 public class Contact {
    private int contactId;
+   @NotEmpty(message ="Please enter a First Name.")
+   @Length(max=50,message = "First Name must be no longer than 50 characters.")
    private String firstName;
+   @NotEmpty(message ="Please enter a Last Name.")
+   @Length(max=50,message = "Last Name must be no longer than 50 characters.")
    private String lastName;
+   @NotEmpty(message ="Please enter a Company.")
+   @Length(max=50,message = "Company Name must be no longer than 50 characters.")
    private String company;
+   @NotEmpty(message = "Please enter an Email address.")
+   @Email(message = "Please enter a valid Email address.")
+   @Length(max=50,message = "Email Address must be no longer than 50 characters.")
    private String email;
+   @NotEmpty(message ="Please enter a Phone Number.")
+   @Length(max=10,message = "Phone Number must be no longer than 10 characters.")
    private String phone;
 
     public int getContactId() {

@@ -8,8 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Response</title>
+    
     </head>
     <div class="container">
     <body style="background-color:powderblue;">

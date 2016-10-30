@@ -1,0 +1,5 @@
+100::The Dark Knight::2008::PG-13::Christopher Nolan::Warner Bros::Batman
+101::Home Alone::1991::PG::Chris Columbus::Hughes Entertainment::Holiday Classic
+102::Rush Hour::1998::PG-13::Brett Ratner::New Line Cinema::DO-YOU-UNDERSTAND-THE-WORDS-THAT-ARE-COMING-OUT-OF-MY-MOUTH?
+103::Rush Hour 2::2001::PG-13::Brett Ratner::New Line Cinema::I always dreamed of going to Madison Square Gardens, see the Knicks play.
+104::Rush Hour 3::2007::PG-13::Brett Ratner::New Line Cinema::Lee I got a big problem man this guys on steroids! His head is as big as Barry Bonds!

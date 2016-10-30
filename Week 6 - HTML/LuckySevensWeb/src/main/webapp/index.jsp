@@ -55,7 +55,6 @@
         <div class="container">
 
             <div class="starter-template">
-               <div id="animation"></div>
                 <center><img src="Lucky7.png" height="342" width="742" alt="Lucky">         
                  <h1>Welcome to Lucky Sevens!</h1>
                  <h4>How much money would you like to bet?</h4>
