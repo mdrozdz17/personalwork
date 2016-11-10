@@ -109,7 +109,7 @@ public class ItemController {
 
             double cost = i.getCost();
             String name = i.getName();
-            int id = i.getId();
+            int id = i.getItemId();
 
             io.print("+--Item--------Cost----+");
             io.print(" " + id + " " + name + "----- " + cost);

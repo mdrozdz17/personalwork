@@ -6,6 +6,7 @@
 package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.model.DVD;
+import com.sg.dvdlibrary.model.DVDTitleCount;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -22,7 +23,7 @@ public interface DvdLibraryDao {
     // R - Read - get one object (ID)
     public DVD getDVDById(int dvdId);
     // R - Read - get by name
-    public List<DVD> getAllDVDSByName(String searchByName);
+    public List<DVD> getAllDVDSByTitle(String searchByName);
     // R - Read - get all objects (All DVDs)
     public List<DVD> getAllDVDS();
     // U - Update
@@ -33,6 +34,8 @@ public interface DvdLibraryDao {
    public void decode() throws FileNotFoundException;
    
    public void encode() throws IOException;
+   
+
    
    
     
@@ -45,6 +48,9 @@ public interface DvdLibraryDao {
     // Studio
     // User Rating
     public List<DVD> searchDVD(Map<SearchTerm,String> criteria);
+    
+     // For the stats
+    public List<DVDTitleCount> getDVDTitleCounts();
     
 }
 

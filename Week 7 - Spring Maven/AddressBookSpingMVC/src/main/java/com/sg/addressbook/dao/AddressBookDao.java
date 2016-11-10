@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.addressbookspringmvc.dao;
+package com.sg.addressbook.dao;
 
 
-import com.sg.addressbookspringmvc.model.Address;
+import com.sg.addressbook.model.Address;
 import java.util.List;
 import java.util.Map;
 

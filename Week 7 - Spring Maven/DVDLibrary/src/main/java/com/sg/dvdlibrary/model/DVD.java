@@ -6,6 +6,7 @@
 package com.sg.dvdlibrary.model;
 
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -19,12 +20,11 @@ public class DVD {
     @NotEmpty(message ="Please enter a DVD Title.")
     @Length(max=50,message = "DVD Title must be no longer than 50 characters.")
     private String title;
-   @NotEmpty(message ="Please enter a Release Date.")
-   @Pattern(regexp="[0-9]+", message = "The Releaste date must be a Year (i.e 2016)")
-   @Length(min=4, max = 4, message = "Release Date must be no longer than 4 characters.")
+   @NotEmpty(message ="Please enter a Release Date")
+   @Length(max = 4, message = "Release Date must be 4 characters. ")
     private String releaseDate;
-   @NotEmpty(message ="Please enter an MPAA Rating.")
-   @Length(max = 5, message = "MPAA-Rating must be no longer than 5 characters.")
+   @NotNull(message = "Your MPAA Rating cannot be empty")
+   @Length(max = 5, message = "MPAA Ratting cannot be longer than 5 characters. ")
     private String mpaaRating;
    @NotEmpty(message ="Please enter a Director's Name.")
    @Length(max=50,message = "Director's Name must be no longer than 50 characters.")
@@ -33,9 +33,9 @@ public class DVD {
    @Length(max=50,message = "Studio Name must be no longer than 50 characters.")
     private String studio;
    @NotEmpty(message ="Please enter User Notes.")
-   @Length(max=200,message = "User Notes must be no longer than 200 characters.")
+   @Length(max=50,message = "User Notes must be no longer than 50 characters.")
     private String userRating;
-    private String date;
+
 
     public int getDvdId() {
         return dvdId;
@@ -93,13 +93,6 @@ public class DVD {
         this.userRating = userRating;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
     
     @Override
    public int hashCode(){
@@ -111,7 +104,6 @@ public class DVD {
      hash = 37 * hash + hash + Objects.hashCode(this.directorsName);
      hash = 37 * hash + hash + Objects.hashCode(this.studio);
      hash = 37 * hash + hash + Objects.hashCode(this.userRating);
-     hash = 37 * hash + hash + Objects.hashCode(this.date);
 
      return hash;
    }
@@ -147,9 +139,6 @@ public class DVD {
             return false;
         }
          if (!Objects.equals(this.userRating, other.userRating)) {
-            return false;
-        }
-         if (!Objects.equals(this.date, other.date)) {
             return false;
         }
         return true;

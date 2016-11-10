@@ -16,7 +16,7 @@ public class Item {
     private String name;
     private double cost;
     private int numInInventory;
-    private int id;
+    private int itemId;
 
     public String getName() {
         return name;
@@ -42,11 +42,11 @@ public class Item {
         this.numInInventory = numInInventory;
     }
 
-    public Integer getId() {
-        return id;
+    public int getItemId() {
+        return itemId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 }

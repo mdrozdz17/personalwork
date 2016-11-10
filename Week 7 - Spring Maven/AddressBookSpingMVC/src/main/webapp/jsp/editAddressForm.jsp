@@ -18,9 +18,9 @@
         <!-- SWC Icon -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
     </head>
-    <body>
+    <body style="background-color:powderblue;" >
         <div class="container">
-            <h1>Edit Address (No Ajax)</h1>
+            <center><h1>Edit Address</h1>
             <hr />
             <h2>Edit Address Form</h2>
             <a href="displayAddressBook">Edit Contact</a><br />
@@ -32,7 +32,7 @@
                     <label for="edit-first-name" 
                            class="col-md-4 control-label">First Name:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                   id="edit-first-name" 
                                   path="firstName"
                                   placeholder="First Name" />
@@ -46,7 +46,7 @@
                         <label for="edit-last-name" 
                                class="col-md-4 control-label">Last Name:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                   id="edit-last-name" 
                                   path="lastName"
                                   placeholder="Last Name" />
@@ -59,7 +59,7 @@
                         <label for="edit-street" 
                                class="col-md-4 control-label">Street:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                   id="edit-street" 
                                   path="street"
                                   placeholder="Street" />
@@ -72,7 +72,7 @@
                         <label for="edit-city" 
                                class="col-md-4 control-label">City:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                   id="edit-city" 
                                   path="city"
                                   placeholder="City" />
@@ -85,7 +85,7 @@
                         <label for="edit-state" 
                                class="col-md-4 control-label">State:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                   id="edit-state" 
                                   path="state"
                                   placeholder="State" />
@@ -97,7 +97,7 @@
                         <label for="edit-zip" 
                                class="col-md-4 control-label">Zip:</label>
                         <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="number" class="form-control" required ="true" maxlength = "5"
                                   id="edit-zip" 
                                   path="zip"
                                   placeholder="Zip" />
@@ -105,6 +105,7 @@
 
                         </div>
                     </div>
+            </center>
                     <div class="form-group">
                         <div class="col-md-offset-4 col-md-8">
                         <sf:hidden path="addressId" />
@@ -114,6 +115,7 @@
                 </div>
             </sf:form>
         </div>
+
         <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     </body>

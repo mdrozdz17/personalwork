@@ -6,6 +6,7 @@
 package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.model.DVD;
+import com.sg.dvdlibrary.model.DVDTitleCount;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class DvdLibraryDaoInMemImpl implements DvdLibraryDao {
     }
 
     @Override
-    public List<DVD> getAllDVDSByName(String searchByName) {
+    public List<DVD> getAllDVDSByTitle(String searchByName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -65,7 +66,7 @@ public class DvdLibraryDaoInMemImpl implements DvdLibraryDao {
 
     @Override
     public List<DVD> searchDVD(Map<SearchTerm, String> criteria) {
-        // Get all the things we're searching fro into individual variables
+        // Get all the things we're searching for into individual variables
         String titleCriteria = criteria.get(SearchTerm.TITLE);
         String releaseDateCriteria = criteria.get(SearchTerm.RELEASE_DATE);
         String mpaaRatingCriteria = criteria.get(SearchTerm.MPAA_RATING);
@@ -86,29 +87,29 @@ public class DvdLibraryDaoInMemImpl implements DvdLibraryDao {
             return true;
         };
 
-        titleMatches = (titleCriteria == null || titleCriteria.isEmpty())
+        titleMatches = (titleCriteria == null || titleCriteria.isEmpty()) 
                 ? truePredicate
-                : (c) -> c.getTitle().equalsIgnoreCase(titleCriteria);
+                : (c) -> c.getTitle().toLowerCase().startsWith(titleCriteria.toLowerCase());
 
         releaseDateMatches = (releaseDateCriteria == null || releaseDateCriteria.isEmpty())
                 ? truePredicate
-                : (c) -> c.getReleaseDate().equalsIgnoreCase(releaseDateCriteria);
+                : (c) -> c.getReleaseDate().toLowerCase().startsWith(releaseDateCriteria.toLowerCase());
 
         mpaaRatingMatches = (mpaaRatingCriteria == null || mpaaRatingCriteria.isEmpty())
                 ? truePredicate
-                : (c) -> c.getMpaaRating().equalsIgnoreCase(mpaaRatingCriteria);
+                : (c) -> c.getMpaaRating().toLowerCase().startsWith(mpaaRatingCriteria.toLowerCase());
 
         directorsNameMatches = (directorsNameCriteria == null || directorsNameCriteria.isEmpty())
                 ? truePredicate
-                : (c) -> c.getDirectorsName().equalsIgnoreCase(directorsNameCriteria);
+                : (c) -> c.getDirectorsName().toLowerCase().startsWith(directorsNameCriteria.toLowerCase());
 
         studioMatches = (studioCriteria == null || studioCriteria.isEmpty())
                 ? truePredicate
-                : (c) -> c.getStudio().equalsIgnoreCase(studioCriteria);
+                : (c) -> c.getStudio().toLowerCase().startsWith(studioCriteria.toLowerCase());
 
         userRatingMatches = (userRatingCriteria == null || userRatingCriteria.isEmpty())
                 ? truePredicate
-                : (c) -> c.getUserRating().equalsIgnoreCase(userRatingCriteria);
+                : (c) -> c.getUserRating().toLowerCase().startsWith(userRatingCriteria.toLowerCase());
 
         // Return the list of contacts that match the given criteria 
         // We will filters and join them with AND
@@ -131,6 +132,11 @@ public class DvdLibraryDaoInMemImpl implements DvdLibraryDao {
     @Override
     public void encode() throws IOException {
         // do nothing for in-memory implementation 
+    }
+
+    @Override
+    public List<DVDTitleCount> getDVDTitleCounts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

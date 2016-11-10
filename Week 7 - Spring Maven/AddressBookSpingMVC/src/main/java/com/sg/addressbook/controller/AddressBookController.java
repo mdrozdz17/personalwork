@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.addressbookspringmvc.controller;
+package com.sg.addressbook.controller;
 
-import com.sg.addressbookspringmvc.dao.AddressBookDao;
-import com.sg.addressbookspringmvc.model.Address;
+import com.sg.addressbook.dao.AddressBookDao;
+import com.sg.addressbook.model.Address;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
@@ -24,50 +24,53 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author apprentice
  */
 @Controller
-public class HomeControllerNoAjax {
+public class AddressBookController {
     // We need a DAO
     private AddressBookDao dao;
     
     // Annotation-driven constructor injection
     @Inject
-    public HomeControllerNoAjax(AddressBookDao dao){
+    public AddressBookController(AddressBookDao dao){
         this.dao = dao;
     }
     
     // Display new address form - to be used in adding a address
     @RequestMapping(value="displayNewAddressForm", method=RequestMethod.GET)
-    public String displayNewAddressForm(@Valid @ModelAttribute("address") Address address, BindingResult result) {
-       
+    public String displayNewAddressForm(Model model) {
+        Address address = new Address();
+        model.addAttribute("address", address);
         return "displayNewAddressForm";
     }
      
     
     // Add a new address
     @RequestMapping(value="/addNewAddress", method=RequestMethod.POST)
-    public String addNewAddress(HttpServletRequest req, Model model ) {
+    public String addNewAddress(HttpServletRequest req, @Valid @ModelAttribute("address") Address address, BindingResult result ) {
         // Get the data submitted from the form
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String street = req.getParameter("street");
-        String city = req.getParameter("city");
-        String state = req.getParameter("state");
-        String zip = req.getParameter("zip");
-
+      //  String firstName = req.getParameter("firstName");
+      //  String lastName = req.getParameter("lastName");
+       // String street = req.getParameter("street");
+       // String city = req.getParameter("city");
+       // String state = req.getParameter("state");
+       // String zip = req.getParameter("zip");
+        if (result.hasErrors()) {
+            return "displayNewAddressForm";
+        }
 
         // Create a new address and set the fields
-        Address addressToAdd = new Address();
-        addressToAdd.setFirstName(firstName);
-        addressToAdd.setLastName(lastName);
-        addressToAdd.setStreet(street);
-        addressToAdd.setCity(city);
-        addressToAdd.setState(state);
-        addressToAdd.setZip(zip);
+       // Address addressToAdd = new Address();
+      //  addressToAdd.setFirstName(firstName);
+      //  addressToAdd.setLastName(lastName);
+      //  addressToAdd.setStreet(street);
+      //  addressToAdd.setCity(city);
+      //  addressToAdd.setState(state);
+     //  addressToAdd.setZip(zip);
 
         // Add the address to the DAO
-        dao.addAddress(addressToAdd);
+        dao.addAddress(address);
         
         //Put the address to the model
-       model.addAttribute("address",addressToAdd);
+      
         // Refresh our address list with the new address
         return "redirect:displayAddressBook";
     }
@@ -135,5 +138,40 @@ public class HomeControllerNoAjax {
         model.addAttribute("addressBook",allAddresses);
         // return the logical view
         return "displayAddressBook";
+    }
+    @RequestMapping(value = "loadContacts", method = RequestMethod.POST)
+    public String loadContacts() {
+        Address a1 = new Address();
+        a1.setFirstName("Matt");
+        a1.setLastName("Drozdz");
+        a1.setStreet("133 Osprey Drive");
+        a1.setCity("Portsmouth");
+        a1.setState("NH - New Hampshire");
+        a1.setZip("03801");
+
+        dao.addAddress(a1);
+        
+        Address a2 = new Address();
+        a2.setFirstName("Jena");
+        a2.setLastName("Drozdz");
+        a2.setStreet("133 Osprey Drive");
+        a2.setCity("Portsmouth");
+        a2.setState("NH - New Hampshire");
+        a2.setZip("03801");
+
+        dao.addAddress(a2);
+        
+        Address a3 = new Address();
+        a3.setFirstName("William");
+        a3.setLastName("Macks");
+        a3.setStreet("164 Tuttle Lane");
+        a3.setCity("Greenland");
+        a3.setState("NH - New Hampshire");
+        a3.setZip("03840");
+
+        dao.addAddress(a3);
+
+   
+        return "redirect:displayAddressBook";
     }
 }

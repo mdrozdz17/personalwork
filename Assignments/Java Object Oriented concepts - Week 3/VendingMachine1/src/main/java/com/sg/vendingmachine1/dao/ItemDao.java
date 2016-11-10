@@ -38,16 +38,16 @@ public class ItemDao {
 
         for (Item i : items) {
 
-            if (i.getId() >= nextId) {
+            if (i.getItemId() >= nextId) {
 
-                nextId = i.getId() + 1;
+                nextId = i.getItemId() + 1;
             }
         }
 
     }
 
     public Item add(Item item) {
-        item.setId(nextId);
+        item.setItemId(nextId);
         
         items.add(item);
         
@@ -62,7 +62,7 @@ public class ItemDao {
         
         for(Item i : items){
             
-            if(i.getId() == id)
+            if(i.getItemId() == id)
                 return i;
         }
         return null;
@@ -72,7 +72,7 @@ public class ItemDao {
 
         for(Item i : items){
             
-            if(i.getId() == item.getId())
+            if(i.getItemId() == item.getItemId())
                 i = item;
             
         }
@@ -85,7 +85,7 @@ public class ItemDao {
 
         for(Item i : items){
             
-            if(i.getId() == item.getId())
+            if(i.getItemId() == item.getItemId())
                 items.remove(i);
             break;
             
@@ -109,7 +109,7 @@ public class ItemDao {
 
             for (Item i : items) {
 
-                out.print(i.getId());
+                out.print(i.getItemId());
                 out.print(DELIMITER);
 
                 out.print(i.getCost());
@@ -153,7 +153,7 @@ public class ItemDao {
                 double itemCost = Double.parseDouble(stringParts[1]);
                 int numInventory = Integer.parseInt(stringParts[3]);
 
-                myItem.setId(itemId);
+                myItem.setItemId(itemId);
                 myItem.setCost(itemCost);
                 myItem.setName(stringParts[2]);
                 myItem.setNumInInventory(numInventory);

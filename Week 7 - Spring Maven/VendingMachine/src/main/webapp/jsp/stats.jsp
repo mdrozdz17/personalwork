@@ -9,16 +9,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>DVD Library |Stats</title>
+        <title>DVD Library | Stats</title>
         <!-- BootStrap CSS -->
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
         <!-- SWC ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
     </head>
-    <body style="background-color:dodgerblue;" >
+    <body style="background-color:powderblue;" >
         <div class="container">
 
-            <center><h1 style="font-family: cursive;">Stats</h1></center>
+            <center><h1 style="font-family: initial;">Stats</h1></center>
             <hr />
             <div class ="navbar-inverse">
                 <ul class ="nav nav-tabs">

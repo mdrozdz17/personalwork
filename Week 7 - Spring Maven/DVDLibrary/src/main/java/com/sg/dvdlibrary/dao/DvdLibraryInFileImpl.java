@@ -6,6 +6,7 @@
 package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.model.DVD;
+import com.sg.dvdlibrary.model.DVDTitleCount;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -37,11 +38,8 @@ public class DvdLibraryInFileImpl implements DvdLibraryDao {
 
    public DvdLibraryInFileImpl() throws FileNotFoundException, IOException {
      decode();
-    // encode();
+  
     }
-    
-    
-    
     
     @Override
     public DVD addDVD(DVD dvd) {
@@ -67,7 +65,7 @@ public class DvdLibraryInFileImpl implements DvdLibraryDao {
     }
 
     @Override
-    public List<DVD> getAllDVDSByName(String searchByName) {
+    public List<DVD> getAllDVDSByTitle(String searchByName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -96,9 +94,15 @@ public class DvdLibraryInFileImpl implements DvdLibraryDao {
             Logger.getLogger(DvdLibraryInFileImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     @Override
     public List<DVD> searchDVD(Map<SearchTerm, String> criteria) {
+        try {
+            decode();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(DvdLibraryInFileImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // Get all the things we're searching fro into individual variables
         String titleCriteria = criteria.get(SearchTerm.TITLE);
         String releaseDateCriteria = criteria.get(SearchTerm.RELEASE_DATE);
@@ -218,5 +222,10 @@ public class DvdLibraryInFileImpl implements DvdLibraryDao {
             out.flush();
             out.close();
         }
+
+    @Override
+    public List<DVDTitleCount> getDVDTitleCounts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     }
 

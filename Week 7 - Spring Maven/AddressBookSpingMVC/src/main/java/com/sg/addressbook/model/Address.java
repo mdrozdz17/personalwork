@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.addressbookspringmvc.model;
+package com.sg.addressbook.model;
 
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
@@ -31,11 +31,10 @@ public class Address {
    @Length(max=21,message = "City can not be longer than 21 characters.")
    private String city;
    @NotEmpty(message ="Please select a State.")
-  //@Length(max=10,message = "State cannot be longer than")
+   @Length(max=20,message = "State cannot be longer than 20 characters")
    private String state;
    @NotEmpty(message = "Please enter a Zip Code.")
-   @Length(min = 5, max=5,message = "Zip Code must be 5 characters long.")
-   @Pattern(regexp="[0-9]+")
+   @Length(max=5,message = "Zip Code must be 5 characters long.")
    private String zip;
    
 

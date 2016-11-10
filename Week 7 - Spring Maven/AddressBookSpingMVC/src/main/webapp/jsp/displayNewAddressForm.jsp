@@ -18,10 +18,10 @@
         <!-- SWC ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
     </head>
-    <body>
+        <body style="background-color:powderblue;" >
         <div class="container">
 
-            <h1>Address Book</h1>
+            <center><h1>Address Book</h1>
             <hr />
             <h2>New Address Form</h2>
             <a href="displayAddressBook">Address Book</a><br />
@@ -33,7 +33,7 @@
                     <label for="add-first-name" 
                            class="col-md-4 control-label">First Name:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                   id="add-first-name" 
                                   path="firstName"
                                   placeholder="First Name" />
@@ -46,7 +46,7 @@
                     <label for="add-last-name"
                            class="col-md-4 control-label">Last Name:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                id="add-last-name" 
                                path="lastName"
                                placeHolder= "Last Name" />
@@ -57,7 +57,7 @@
                     <label for="add-street"
                            class="col-md-4 control-label">Street:</label>
                     <div class="col-md-8">
-                       <sf:input type="text" class="form-control"
+                       <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                id="add-street" 
                                path="street"
                                placeHolder= "Street" />
@@ -68,7 +68,7 @@
                     <label for="add-city"
                            class="col-md-4 control-label">City:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                id="add-city" 
                                path="city"
                                placeHolder= "City" />
@@ -79,7 +79,7 @@
                     <label for="add-state"
                            class="col-md-4 control-label">State:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="text" class="form-control" required ="true" maxlength = "50"
                                id="add-state" 
                                path="state"
                                placeHolder= "State" />
@@ -87,16 +87,17 @@
                     </div>
                 </div>
                   <div class="form-group">
-                    <label for="add-state"
+                    <label for="add-zip"
                            class="col-md-4 control-label">Zip:</label>
                     <div class="col-md-8">
-                        <sf:input type="text" class="form-control"
+                        <sf:input type="number" class="form-control" required ="true" maxlength = "5"
                                id="add-zip" 
                                path="zip"
                                placeHolder= "Zip Code" />
                                 <sf:errors path="zip" cssClass="error"></sf:errors>
                     </div>
                 </div>
+            </center>
               <div class="form-group">
                     <div class="col-md-offset-4 col-md-8">
                         <sf:hidden path="addressId" />

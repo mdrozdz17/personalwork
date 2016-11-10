@@ -15,16 +15,42 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd"> 
 
     <!-- Bean definitions go here -->
-    <bean id="dvdLibraryInFile" class="com.sg.dvdlibrary.dao.DvdLibraryInFileImpl" />
-    <bean id="dvdLibraryInMem" class="com.sg.dvdlibrary.dao.DvdLibraryDaoInMemImpl" />
+     <!-- #1 Use annotation-driven transactions -->
+ <tx:annotation-driven />
+
+ <!-- Bean definitions go here -->
+ <!-- #2 Define Data Source -->
+ <bean id="dataSource"
+ class="org.apache.commons.dbcp2.BasicDataSource">
+ <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+ <property name="url"
+ value="jdbc:mysql://localhost:3306/dvd_list_test" />
+ <property name="username" value="root" />
+ <property name="password" value="apprentice" />
+ <property name="initialSize" value="5" />
+ <property name="maxTotal" value="10" />
+ </bean>
+
+ <!-- #3 Define Transaction Manager -->
+ <bean id="transactionManager"
+ class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+ <property name="dataSource" ref="dataSource" />
+ </bean>
+
+ <!-- #3 Define JdbcTemplate -->
+ <bean id="jdbcTemplate"
+ class="org.springframework.jdbc.core.JdbcTemplate">
+ <property name="dataSource" ref="dataSource" />
+ </bean>
+
+    <bean id="dvdLibraryInFile" class="com.sg.dvdlibrary.dao.DvdLibraryInFileImpl" >
+    </bean>
+    <bean id="dvdLibraryInMem" class="com.sg.dvdlibrary.dao.DvdLibraryDaoInMemImpl" >
+    </bean>
+    <bean id ="dvdLibraryInDb" class ="com.sg.dvdlibrary.dao.DvdLibraryDaoDbImpl" >
+     <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
     
-    <bean id = "DVDControllerFile" class="com.sg.dvdlibrary.controller.DVDController">
-    <constructor-arg ref="dvdLibraryInFile" />
-    </bean>
-     <bean id = "DVDControllerInMem" class="com.sg.dvdlibrary.controller.DVDController">
-    <constructor-arg ref="dvdLibraryInMem" />
-  
-    </bean>
 
 </beans>
 

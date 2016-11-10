@@ -15,7 +15,8 @@
         <!-- SWC ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
     </head>
-    <body>
+    <body style="background-color:powderblue;" >
+
         <div class="container">
 
             <h1>Stats</h1>

@@ -11,4 +11,24 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <name>VendingMachine</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.2.1.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
