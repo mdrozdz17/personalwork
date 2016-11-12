@@ -7,6 +7,7 @@ package com.sg.addressbook.dao;
 
 
 import com.sg.addressbook.model.Address;
+import com.sg.addressbook.model.StateContactCount;
 import java.util.List;
 import java.util.Map;
 
@@ -38,4 +39,5 @@ public interface AddressBookDao {
     // PHONE
     public List<Address> searchAddress(Map<SearchTerm,String> criteria);
 
+     public List<StateContactCount> getStateContactCounts();
 }

@@ -7,6 +7,7 @@ package com.sg.addressbook.dao;
 
 
 import com.sg.addressbook.model.Address;
+import com.sg.addressbook.model.StateContactCount;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -137,6 +138,11 @@ public class AddressBookDaoInMemImpl implements AddressBookDao {
                  .and(stateMatches)
                  .and(zipMatches))
                  .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StateContactCount> getStateContactCounts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 

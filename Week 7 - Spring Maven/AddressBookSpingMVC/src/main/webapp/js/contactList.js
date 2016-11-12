@@ -140,7 +140,7 @@ function fillContactTable(contactList, status) {
                                     'data-target': '#detailsModal'
                                 })
                                 .text((index) + ' - ' + person.firstName + ' ' + person.lastName)))
-                .append($('<td>').text(person.company))
+                .append($('<td>').text(person.state))
                 .append($('<td>')
                         .append($('<a>')
                                 .attr({
