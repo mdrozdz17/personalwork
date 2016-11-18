@@ -37,6 +37,14 @@ public class AddressBookDaoDbImpl implements AddressBookDao {
     // Stats query
     private static final String SQL_SELECT_STATE_CONTACT_COUNTS
             = "SELECT state, count(*) as num_contacts FROM contacts GROUP BY state;";
+      // Seach query
+      private static final String SQL_SEARCH_CONTACT
+            = "Select * from address where first_name like ? "
+            + "AND last_name like ? "
+            + "AND street like ? "
+            + "AND city  like  ? "
+            + "AND state like  ? "
+            + "AND zip like  ? ";  
 
     // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
     private JdbcTemplate jdbcTemplate;
@@ -77,7 +85,14 @@ public class AddressBookDaoDbImpl implements AddressBookDao {
 
     @Override
     public List<Address> searchAddress(Map<SearchTerm, String> criteria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          return jdbcTemplate.query(SQL_SEARCH_CONTACT, new ContactMapper(),
+               // + "%" so you don't have to type full name when searching.
+             criteria.get(SearchTerm.FIRST_NAME) ==  null ? "%" :  criteria.get(SearchTerm.FIRST_NAME) + "%",
+             criteria.get(SearchTerm.LAST_NAME) == null ? "%" : criteria.get(SearchTerm.LAST_NAME)+ "%",
+             criteria.get(SearchTerm.STREET) == null ? "%" : criteria.get(SearchTerm.STREET)+ "%",
+             criteria.get(SearchTerm.CITY) == null ? "%" : criteria.get(SearchTerm.CITY)+ "%",
+             criteria.get(SearchTerm.STATE) == null ? "%" : criteria.get(SearchTerm.STATE)+ "%",
+             criteria.get(SearchTerm.ZIP) == null ? "%" : criteria.get(SearchTerm.ZIP)+ "%");
     }
 
     @Override
