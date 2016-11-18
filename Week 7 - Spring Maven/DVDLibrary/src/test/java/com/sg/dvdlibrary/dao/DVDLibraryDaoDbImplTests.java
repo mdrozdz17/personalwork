@@ -46,6 +46,7 @@ public class DVDLibraryDaoDbImplTests {
     public void setUp() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("test-applicationContext.xml");
         dao = (DvdLibraryDao) ctx.getBean("dvdLibraryInDb");
+        
         //Grab a JdbcTemplate to use for cleaning up
         JdbcTemplate cleaner = (JdbcTemplate) ctx.getBean("jdbcTemplate");
         cleaner.execute("delete from dvds");
@@ -75,7 +76,7 @@ public class DVDLibraryDaoDbImplTests {
         // Get DVD out of Dao by DVD ID
         DVD myDVD = dao.getDVDById(newDVD.getDvdId());
 
-        //assertEquals("DVD stored, vs. DVD retrieved does not match", myDVD, newDVD);
+        assertEquals("DVD stored, vs. DVD retrieved does not match", myDVD, newDVD);
         // Make sure newDVD Stored Matches what is in the Database
         
         assertEquals(myDVD.getDvdId(), newDVD.getDvdId());
@@ -185,7 +186,7 @@ public class DVDLibraryDaoDbImplTests {
 
         dao.addDVD(newDVD3);
 
-        /*
+        
         //Create search criteria
         Map<SearchTerm, String> criteria = new HashMap<>();
         criteria.put(SearchTerm.DIRECTORS_NAME, "Brett Ratner");
@@ -214,6 +215,6 @@ public class DVDLibraryDaoDbImplTests {
         criteria.put(SearchTerm.STUDIO, "Hollywood");
         dvdList = dao.searchDVD(criteria);
         assertEquals(0, dvdList.size());
-*/
+
     }
 }

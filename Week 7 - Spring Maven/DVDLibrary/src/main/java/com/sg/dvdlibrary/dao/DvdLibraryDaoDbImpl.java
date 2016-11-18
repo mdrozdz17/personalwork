@@ -26,12 +26,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class DvdLibraryDaoDbImpl implements DvdLibraryDao {
     //#1 All SQL code in the form of Prepared Statments
     
+    // Used for adding
     private static final String SQL_INSERT_DVD
             = "insert into dvds (title, releaseDate, mpaaRating, directorsName, studio, userRating) values (?, ?, ?, ?, ?, ?)";
     private static final String SQL_DELETE_DVD
             = "delete from dvds where dvdId = ?";
+    // Get DVD By ID
     private static final String SQL_SELECT_DVD
             = "select * from dvds where dvdId = ?";
+    // Update specfic DVD Field
     private static final String SQL_UPDATE_DVD
             = "update dvds set title= ?, releaseDate = ?, mpaaRating = ?, directorsName = ?, studio = ?, userRating = ? where dvdId = ?";
     private static final String SQL_SELECT_ALL_DVD
@@ -43,6 +46,14 @@ public class DvdLibraryDaoDbImpl implements DvdLibraryDao {
     // Stats query
     private static final String SQL_SELECT_DVD_TITLE_COUNTS
             = "select dvds, count(*) as num_dvds from dvd group by mpaaRating";
+    // Seach query
+      private static final String SQL_SEARCH_DVDS
+            = "Select * from dvds where title like ? "
+            + "AND releaseDate like ? "
+            + "AND mpaaRating like ? "
+            + "AND directorsName  like  ? "
+            + "AND studio like  ? "
+            + "AND userRating like  ? ";         
     
      // #2a - Declare JdbcTemplate reference - the instance will be handed to us by Spring
     private JdbcTemplate jdbcTemplate;
@@ -77,7 +88,7 @@ public class DvdLibraryDaoDbImpl implements DvdLibraryDao {
         try {
         return jdbcTemplate.queryForObject(SQL_SELECT_DVD, new DVDMapper(), dvdId);
         } catch (EmptyResultDataAccessException ex) {
-           // there were no results for the given contact id - we just want to
+           // there were no results for the given dvd id - we just want to
             // return null in this case
             return null;
         }
@@ -128,8 +139,17 @@ public class DvdLibraryDaoDbImpl implements DvdLibraryDao {
 
     @Override
     public List<DVD> searchDVD(Map<SearchTerm, String> criteria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return jdbcTemplate.query(SQL_SEARCH_DVDS, new DVDMapper(),
+               // + "%" so you don't have to type full name when searching.
+             criteria.get(SearchTerm.TITLE) ==  null ? "%" :  criteria.get(SearchTerm.TITLE) + "%",
+             criteria.get(SearchTerm.RELEASE_DATE) == null ? "%" : criteria.get(SearchTerm.RELEASE_DATE)+ "%",
+             criteria.get(SearchTerm.MPAA_RATING) == null ? "%" : criteria.get(SearchTerm.MPAA_RATING)+ "%",
+             criteria.get(SearchTerm.DIRECTORS_NAME) == null ? "%" : criteria.get(SearchTerm.DIRECTORS_NAME)+ "%",
+             criteria.get(SearchTerm.STUDIO) == null ? "%" : criteria.get(SearchTerm.STUDIO)+ "%",
+             criteria.get(SearchTerm.USER_RATING) == null ? "%" : criteria.get(SearchTerm.USER_RATING)+ "%");
+       
     }
+    
     
     private static final class DVDMapper implements RowMapper<DVD> {
 

@@ -40,6 +40,7 @@
                         <li role="presentation">
                             <a href="${pageContext.request.contextPath}/displayNewDVDForm">Add New DVD</a>
                         </li>
+                        
                     </ul>
                 </div>
                 <div class="row">

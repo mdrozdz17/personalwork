@@ -18,10 +18,10 @@
         <!-- SWC ICON -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
         <style type="text/css">
-.modal-backdrop {
-   background-color: red;
-}
-</style>
+            .modal-backdrop {
+                background-color: red;
+            }
+        </style>
     </head>
     <body style="background-color:powderblue;" >
         <div class="container">
@@ -29,7 +29,8 @@
             <center><h1 style="font-family: initial;">Welcome To My DVD Library</h1>
 
                 <hr />
-                <div class ="navbar-inverse">
+                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+               
                     <ul class ="nav nav-tabs">
                         <li role="presentation" class="active">
                             <a href="${pageContext.request.contextPath}/home">Home</a>
@@ -46,9 +47,18 @@
                         <li role="presentation">
                             <a href="${pageContext.request.contextPath}/displayNewDVDForm">Add New DVD</a>
                         </li>
-                        <li>   
+                        <form class="navbar-form navbar">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="search-title" placeholder="Search" />
+                                <span class="input-group-btn">
+                                    id="search-button"
+                                    <button class="btn btn-primary">Search</button>
+                                </span>
                             </div>
-                <p></p>
+                        </form>
+
+                    </ul>      
+                </nav>
 
                 <div class="row">
                     <div class="col-md-6 col-lg-6 col-xs-6">
@@ -88,10 +98,10 @@
                                 <label for="add-mpaa-rating-label" 
                                        class="col-md-4 control-label">MPAA Rating:</label>
                                 <div class="col-md-8">
-                                           <select style="width: 290px;" id="add-mpaa-rating" name="rating">
-                                               <option disabled ="disabled" selected="selected" value="default"/>Please Select An Option</option>
+                                    <select style="width: 290px;" id="add-mpaa-rating" name="rating">
+                                        <option disabled ="disabled" selected="selected" value="default"/>Please Select An Option</option>
                                         <c:forEach items="${mpaaRating}"  var="rating">
-                                         <option value="${rating.name}">${rating.name}
+                                            <option value="${rating.name}">${rating.name}
                                             </option>
                                         </c:forEach>
                                     </select> 
