@@ -103,7 +103,7 @@ $(document).ready(function () {
             $('#search-last-name').val('');
             $('#search-street').val('');
             $('#search-city').val('');
-            $('#search-state').val("0");
+            $('#search-state').val('');
             $('#search-zip').val('');
 
 

@@ -136,7 +136,6 @@
                             <td>${dvd.mpaaRating}</td>
                             <td>${dvd.directorsName}</td>
                             <td>${dvd.studio}</td>
-                            <td> ${dvd.userRating}</td>
                             </tr>
                         </c:forEach>
                         </tbody>

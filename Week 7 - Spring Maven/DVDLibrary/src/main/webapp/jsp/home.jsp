@@ -23,16 +23,14 @@
             }
         </style>
     </head>
-    <body style="background-color:powderblue;" >
+     <body style="background-color:powderblue;" >
         <div class="container">
-
-            <center><h1 style="font-family: initial;">Welcome To My DVD Library</h1>
-
+            <center>
+            <h1 style="font-family: initial;">Home</h1>
                 <hr />
-                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-               
+                <div class ="navbar-inverse">
                     <ul class ="nav nav-tabs">
-                        <li role="presentation" class="active">
+                        <li role="presentation" class ="active">
                             <a href="${pageContext.request.contextPath}/home">Home</a>
                         </li>
                         <li role="presentation">
@@ -47,19 +45,9 @@
                         <li role="presentation">
                             <a href="${pageContext.request.contextPath}/displayNewDVDForm">Add New DVD</a>
                         </li>
-                        <form class="navbar-form navbar">
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="search-title" placeholder="Search" />
-                                <span class="input-group-btn">
-                                    id="search-button"
-                                    <button class="btn btn-primary">Search</button>
-                                </span>
-                            </div>
-                        </form>
-
-                    </ul>      
-                </nav>
-
+                        
+                    </ul>
+                </div>
                 <div class="row">
                     <div class="col-md-6 col-lg-6 col-xs-6">
                         <!-- Our list of contacts -->
