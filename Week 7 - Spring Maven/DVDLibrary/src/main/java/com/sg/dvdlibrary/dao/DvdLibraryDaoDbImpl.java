@@ -60,9 +60,9 @@ public class DvdLibraryDaoDbImpl implements DvdLibraryDao {
     // #2b - We are using Setter Injection to direct Spring to hand us an instance of
     // the JdbcTemplate (see the Spring Configuration section below for configuration
     // details).
-    
+
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate=jdbcTemplate;
+        this.jdbcTemplate = jdbcTemplate;
     }
     
 
